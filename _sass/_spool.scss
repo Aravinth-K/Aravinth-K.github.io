@@ -1,43 +1,50 @@
-// Spool — collapsible right-sliding detail panes
+// Spool — inline column splitting with white thread connections
 
-// The trigger button in content
+// Trigger button in content
 .spool {
-  margin: 1.5rem 0;
+  margin: 1.25rem 0;
 
   .spool-trigger {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: $bg-secondary;
+    gap: 0.6rem;
+    padding: 0.4rem 1rem 0.4rem 0.6rem;
+    background: transparent;
     border: 1px solid $border;
-    border-radius: 6px;
+    border-radius: 24px;
     cursor: pointer;
     font-family: $font-body;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: $accent;
-    transition: all 0.2s;
+    transition: all 0.25s;
+    position: relative;
 
     &:hover {
-      background: $bg-tertiary;
       border-color: $accent-light;
+      background: rgba(255, 255, 255, 0.6);
     }
 
     &.active {
-      background: $accent;
-      color: white;
-      border-color: $accent;
+      border-color: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+      color: $accent-hover;
     }
+  }
 
-    .spool-icon {
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      transition: transform 0.3s;
-    }
+  .spool-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: $accent;
+    border: 2px solid white;
+    box-shadow: 0 0 0 1px $accent;
+    transition: all 0.3s;
+    flex-shrink: 0;
 
-    &.active .spool-icon {
-      transform: rotate(90deg);
+    .active & {
+      background: white;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.4);
     }
   }
 
@@ -46,137 +53,160 @@
   }
 }
 
-// The overlay
-.spool-overlay {
-  position: fixed;
+// Spool page — horizontal flex layout (created by JS)
+.spool-page {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  min-height: calc(100vh - #{$header-height} - 140px);
+}
+
+// Expand site-content when spools are open
+.site-content.spool-active {
+  max-width: none;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-left: 0;
+  padding-right: 0;
+
+  &::-webkit-scrollbar {
+    height: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $border;
+    border-radius: 3px;
+  }
+}
+
+// Columns
+.spool-col {
+  flex-shrink: 0;
+  transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.35s ease;
+
+  &.spool-col-main {
+    width: min(#{$content-width}, calc(100vw - 3rem));
+    padding: 0 1.5rem;
+
+    &.narrowed {
+      width: min(440px, 50vw);
+    }
+  }
+
+  &.spool-col-child {
+    width: 0;
+    opacity: 0;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+
+    &.open {
+      width: min(480px, 50vw);
+      opacity: 1;
+      padding: 1rem 2rem 2rem;
+      overflow: visible;
+    }
+
+    &.closing {
+      width: 0;
+      opacity: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  }
+}
+
+// Column header
+.spool-col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid $border;
+}
+
+.spool-col-title {
+  font-family: $font-heading;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: $text-primary;
+  margin: 0;
+}
+
+.spool-col-close {
+  width: 28px;
+  height: 28px;
+  border: 1px solid $border;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-muted;
+  font-size: 1rem;
+  transition: all 0.2s;
+  flex-shrink: 0;
+
+  &:hover {
+    border-color: $text-secondary;
+    color: $text-primary;
+  }
+}
+
+.spool-col-body {
+  line-height: 1.7;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// White thread SVG overlay
+.spool-threads {
+  position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.15);
-  opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s;
-  z-index: 200;
-
-  &.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
+  z-index: 10;
+  overflow: visible;
 }
 
-// The sliding pane container
-.spool-container {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  z-index: 300;
-  pointer-events: none;
-
-  &.active {
-    pointer-events: auto;
-  }
+.spool-thread {
+  fill: none;
+  stroke: white;
+  stroke-width: 1.5;
+  stroke-linecap: round;
 }
 
-// Individual pane
-.spool-pane {
-  width: min(480px, 85vw);
-  height: 100vh;
-  overflow-y: auto;
-  padding: calc(#{$header-height} + 1.5rem) 2rem 2rem;
-  border-left: 1px solid $border;
-  box-shadow: -4px 0 24px $shadow;
-  transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+.spool-thread-glow {
+  fill: none;
+  stroke: white;
+  stroke-width: 5;
+  stroke-linecap: round;
+  opacity: 0.25;
+}
 
-  &.open {
-    transform: translateX(0);
-  }
+.spool-thread-dot {
+  fill: white;
+}
 
-  // Depth coloring
-  &[data-depth="0"] { background: $spool-bg-0; }
-  &[data-depth="1"] { background: $spool-bg-1; }
-  &[data-depth="2"] { background: $spool-bg-2; }
-  &[data-depth="3"] { background: $spool-bg-3; }
-
-  .spool-pane-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid $border;
-  }
-
-  .spool-pane-title {
-    font-family: $font-heading;
-    font-size: 1.3rem;
-    font-weight: 400;
-    color: $text-primary;
-    margin: 0;
-  }
-
-  .spool-pane-close {
-    width: 32px;
-    height: 32px;
-    border: none;
-    background: $bg-secondary;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $text-secondary;
-    font-size: 1.1rem;
-    transition: all 0.2s;
-    flex-shrink: 0;
-
-    &:hover {
-      background: $bg-tertiary;
-      color: $text-primary;
-    }
-  }
-
-  // Breadcrumb trail
-  .spool-breadcrumb {
-    font-size: 0.8rem;
-    color: $text-muted;
-    margin-bottom: 1rem;
-
-    span {
-      &:not(:last-child)::after {
-        content: " \2192 ";
-        color: $border;
-      }
-    }
-  }
-
-  // Content styles within pane
-  .spool-pane-body {
-    line-height: 1.7;
-
-    h1, h2, h3, h4 {
-      &:first-child {
-        margin-top: 0;
-      }
-    }
-
-    p:last-child {
-      margin-bottom: 0;
-    }
-
-    // Nested spool triggers in pane
-    .spool {
-      margin: 1rem 0;
-    }
-  }
+@keyframes drawThread {
+  from { stroke-dashoffset: var(--thread-length); }
+  to { stroke-dashoffset: 0; }
 }
 
 @media (max-width: $bp-mobile) {
-  .spool-pane {
-    width: 92vw;
-    padding: calc(#{$header-height} + 1rem) 1.25rem 1.5rem;
+  .spool-col.spool-col-main.narrowed {
+    width: 260px;
+  }
+  .spool-col.spool-col-child.open {
+    width: min(320px, 80vw);
+    padding: 0.75rem 1.25rem 1.5rem;
   }
 }

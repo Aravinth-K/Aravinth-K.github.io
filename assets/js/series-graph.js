@@ -1,13 +1,13 @@
-// Series tree visualization using D3.js
-// Call renderSeriesTree('container-id', data) where data has { nodes: [...] }
-// Each node: { id, name, parent (null for root), url (optional) }
+// Series spanning tree visualization using D3.js
 
 function renderSeriesTree(containerId, data) {
   var container = document.getElementById(containerId);
-  if (!container || !data || !data.nodes || data.nodes.length === 0) return;
+  if (!container || !data || !data.nodes || data.nodes.length < 2) return;
 
+  var margin = { top: 20, right: 120, bottom: 20, left: 20 };
   var width = container.clientWidth;
-  var height = Math.max(300, data.nodes.length * 50);
+  var nodeCount = data.nodes.length;
+  var height = Math.max(140, nodeCount * 48);
   container.style.minHeight = height + 'px';
 
   var svg = d3.select('#' + containerId)
@@ -16,20 +16,26 @@ function renderSeriesTree(containerId, data) {
     .attr('height', height);
 
   var g = svg.append('g')
-    .attr('transform', 'translate(40, 20)');
+    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-  // Create tree layout
-  var treeLayout = d3.tree()
-    .size([height - 40, width - 180]);
+  var treeWidth = width - margin.left - margin.right;
+  var treeHeight = height - margin.top - margin.bottom;
 
-  // Build hierarchy from flat node list
-  var root = d3.stratify()
-    .id(function (d) { return d.id; })
-    .parentId(function (d) { return d.parent; })(data.nodes);
+  var treeLayout = d3.tree().size([treeHeight, treeWidth]);
+
+  // Build hierarchy
+  var root;
+  try {
+    root = d3.stratify()
+      .id(function (d) { return d.id; })
+      .parentId(function (d) { return d.parent; })(data.nodes);
+  } catch (e) {
+    return; // Invalid data
+  }
 
   treeLayout(root);
 
-  // Draw links
+  // Draw curved links
   g.selectAll('.link')
     .data(root.links())
     .enter()
@@ -44,20 +50,20 @@ function renderSeriesTree(containerId, data) {
     .data(root.descendants())
     .enter()
     .append('g')
-    .attr('class', 'node')
+    .attr('class', function (d) { return 'node' + (d.parent ? '' : ' root'); })
     .attr('transform', function (d) {
       return 'translate(' + d.y + ',' + d.x + ')';
     });
 
   node.append('circle')
-    .attr('r', 5)
+    .attr('r', function (d) { return d.parent ? 5 : 7; })
     .style('cursor', function (d) { return d.data.url ? 'pointer' : 'default'; })
     .on('click', function (event, d) {
       if (d.data.url) window.location.href = d.data.url;
     });
 
   node.append('text')
-    .attr('dx', 10)
+    .attr('dx', function (d) { return d.parent ? 10 : 12; })
     .attr('dy', 4)
     .text(function (d) { return d.data.name; })
     .style('cursor', function (d) { return d.data.url ? 'pointer' : 'default'; })

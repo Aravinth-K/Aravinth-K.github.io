@@ -48,8 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var trigger = document.createElement('button');
     trigger.className = 'spool-trigger';
     trigger.innerHTML =
-      '<svg class="spool-chevron" width="10" height="10" viewBox="0 0 10 10">' +
-        '<path d="M3 1.5 L7 5 L3 8.5" stroke="currentColor" stroke-width="1.5" ' +
+      '<svg class="spool-chevron" width="14" height="14" viewBox="0 0 14 14">' +
+        // A little loop/knot that represents a thread
+        '<path d="M2,7 C2,2 12,2 12,7 C12,12 6,12 6,7 C6,4 9,4 9,7" stroke="currentColor" stroke-width="1.5" ' +
         'stroke-linecap="round" stroke-linejoin="round" fill="none"/>' +
       '</svg>' +
       '<span>' + title + '</span>';
@@ -82,10 +83,15 @@ document.addEventListener('DOMContentLoaded', function () {
     col.className = 'spool-col spool-col-child';
     col.dataset.depth = String((parseInt(parentCol.dataset.depth) || 0) + 1);
 
-    // Horizontal thread connector at trigger level
+    // Horizontal animated thread connector (Sagging string SVG)
     var connector = document.createElement('div');
-    connector.className = 'spool-connector';
-    connector.style.top = triggerMidY + 'px';
+    connector.className = 'spool-connector-svg-wrap';
+    // Position adjusted so the top of the path aligns near triggerMidY
+    connector.style.top = (triggerMidY - 4) + 'px'; 
+    connector.innerHTML = 
+      '<svg width="28" height="24" viewBox="0 0 28 24" class="spool-svg-connector">' +
+        '<path d="M0,4 Q14,20 28,4" class="spool-path" fill="none" stroke-linecap="round"/>' +
+      '</svg>';
 
     // Align content with trigger position
     var alignTop = Math.max(0, triggerY - 12);

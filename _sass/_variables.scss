@@ -1,23 +1,24 @@
-// Colors — warm paper palette
-$bg-primary: #F8F7F4;
-$bg-secondary: #F0EFEB;
-$bg-tertiary: #E8E6E1;
-$text-primary: #2C2C2C;
-$text-secondary: #5A5A5A;
-$text-muted: #8A8A8A;
-$accent: #3D6B5E;
-$accent-light: #5A8F7F;
-$accent-hover: #2D5246;
-$highlight: #C17B3A;
-$border: #E0DED8;
-$code-bg: #F0EFEB;
-$shadow: rgba(0, 0, 0, 0.08);
+// Colors — Warm Cream & Luminous Threads
+$bg-primary: #FCFAF5; // Creamier warm light
+$bg-secondary: #F6F3ED;
+$bg-tertiary: #EFEBE3;
+$text-primary: #332E2A; // Warmer dark grey
+$text-secondary: #6B625A;
+$text-muted: #A39A8F;
+$accent: #E86A33; // Vibrant glowing coral/orange thread
+$accent-light: #FFA682; // Lighter glow
+$accent-hover: #C94C16; // Deeper tension
+$highlight: #2A9D8F; // Contrasting teal
+$border: #E8E5DD;
+$code-bg: #F6F3ED;
+$shadow: rgba(0, 0, 0, 0.05);
+$glow-shadow: rgba(232, 106, 51, 0.25); // Warm luminous shadow
 
 // Spool pane depth colors
 $spool-bg-0: #FFFFFF;
-$spool-bg-1: #FAFAF8;
-$spool-bg-2: #F5F4F1;
-$spool-bg-3: #F0EFEB;
+$spool-bg-1: #FCFAF5;
+$spool-bg-2: #F8F5EE;
+$spool-bg-3: #F6F3ED;
 
 // Typography
 $font-heading: 'Crimson Pro', Georgia, serif;

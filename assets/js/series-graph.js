@@ -1,13 +1,13 @@
-// Series spanning tree visualization using D3.js
+// Series spanning tree visualization
 
 function renderSeriesTree(containerId, data) {
   var container = document.getElementById(containerId);
   if (!container || !data || !data.nodes || data.nodes.length < 2) return;
 
-  var margin = { top: 20, right: 120, bottom: 20, left: 20 };
+  var margin = { top: 24, right: 140, bottom: 24, left: 24 };
   var width = container.clientWidth;
   var nodeCount = data.nodes.length;
-  var height = Math.max(140, nodeCount * 48);
+  var height = Math.max(100, nodeCount * 44 + margin.top + margin.bottom);
   container.style.minHeight = height + 'px';
 
   var svg = d3.select('#' + containerId)
@@ -23,19 +23,18 @@ function renderSeriesTree(containerId, data) {
 
   var treeLayout = d3.tree().size([treeHeight, treeWidth]);
 
-  // Build hierarchy
   var root;
   try {
     root = d3.stratify()
       .id(function (d) { return d.id; })
       .parentId(function (d) { return d.parent; })(data.nodes);
   } catch (e) {
-    return; // Invalid data
+    return;
   }
 
   treeLayout(root);
 
-  // Draw curved links
+  // Links
   g.selectAll('.link')
     .data(root.links())
     .enter()
@@ -45,7 +44,7 @@ function renderSeriesTree(containerId, data) {
       .x(function (d) { return d.y; })
       .y(function (d) { return d.x; }));
 
-  // Draw nodes
+  // Nodes
   var node = g.selectAll('.node')
     .data(root.descendants())
     .enter()
@@ -56,17 +55,15 @@ function renderSeriesTree(containerId, data) {
     });
 
   node.append('circle')
-    .attr('r', function (d) { return d.parent ? 5 : 7; })
-    .style('cursor', function (d) { return d.data.url ? 'pointer' : 'default'; })
+    .attr('r', function (d) { return d.parent ? 3.5 : 4.5; })
     .on('click', function (event, d) {
       if (d.data.url) window.location.href = d.data.url;
     });
 
   node.append('text')
-    .attr('dx', function (d) { return d.parent ? 10 : 12; })
-    .attr('dy', 4)
+    .attr('dx', function (d) { return d.parent ? 8 : 10; })
+    .attr('dy', 3.5)
     .text(function (d) { return d.data.name; })
-    .style('cursor', function (d) { return d.data.url ? 'pointer' : 'default'; })
     .on('click', function (event, d) {
       if (d.data.url) window.location.href = d.data.url;
     });

@@ -87,8 +87,28 @@ img {
 
 hr {
   border: none;
-  border-top: 1px solid $border;
+  height: 1px;
+  background: $border;
   margin: 2.5rem 0;
+  position: relative;
+
+  // Thread glow overlay
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.6) 25%,
+      rgba(255, 255, 255, 0.6) 75%,
+      transparent
+    );
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  }
 }
 
 ul, ol {

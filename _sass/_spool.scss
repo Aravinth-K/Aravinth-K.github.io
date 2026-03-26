@@ -1,50 +1,45 @@
-// Spool — inline column splitting with white thread connections
+// Spool — inline column splitting with CSS thread connections
+// No SVG overlay. Threads live in the gap between columns via
+// pseudo-elements and positioned divs.
 
-// Trigger button in content
 .spool {
   margin: 1.25rem 0;
 
   .spool-trigger {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.4rem 1rem 0.4rem 0.6rem;
+    gap: 0.45rem;
+    padding: 0.35rem 0.9rem;
     background: transparent;
     border: 1px solid $border;
-    border-radius: 24px;
+    border-radius: 20px;
     cursor: pointer;
     font-family: $font-body;
     font-size: 0.88rem;
     color: $accent;
-    transition: all 0.25s;
-    position: relative;
+    transition: all 0.3s ease;
 
     &:hover {
       border-color: $accent-light;
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.5);
     }
 
     &.active {
-      border-color: rgba(255, 255, 255, 0.8);
-      background: rgba(255, 255, 255, 0.6);
-      box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
       color: $accent-hover;
+      border-color: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.45);
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.25);
     }
-  }
 
-  .spool-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: $accent;
-    border: 2px solid white;
-    box-shadow: 0 0 0 1px $accent;
-    transition: all 0.3s;
-    flex-shrink: 0;
+    .spool-chevron {
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
 
-    .active & {
-      background: white;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.4);
+    &.active .spool-chevron {
+      transform: rotate(90deg);
+      opacity: 1;
     }
   }
 
@@ -53,15 +48,14 @@
   }
 }
 
-// Spool page — horizontal flex layout (created by JS)
+// ── Spool page layout ──────────────────────────────────────
+
 .spool-page {
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   position: relative;
-  min-height: calc(100vh - #{$header-height} - 140px);
 }
 
-// Expand site-content when spools are open
 .site-content.spool-active {
   max-width: none;
   overflow-x: auto;
@@ -70,22 +64,23 @@
   padding-right: 0;
 
   &::-webkit-scrollbar {
-    height: 5px;
+    height: 3px;
   }
   &::-webkit-scrollbar-track {
     background: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background: $border;
-    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
   }
 }
 
-// Columns
+// ── Columns ────────────────────────────────────────────────
+
 .spool-col {
   flex-shrink: 0;
-  transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-              padding 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 0.35s ease;
 
   &.spool-col-main {
@@ -100,14 +95,34 @@
   &.spool-col-child {
     width: 0;
     opacity: 0;
-    padding: 0;
     overflow: hidden;
     position: relative;
+    margin-left: 28px; // gap for thread
+
+    // Vertical thread in the gap (left edge)
+    &::before {
+      content: '';
+      position: absolute;
+      left: -14px; // centered in the 28px gap
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent 2%,
+        rgba(255, 255, 255, 0.35) 12%,
+        rgba(255, 255, 255, 0.55) 50%,
+        rgba(255, 255, 255, 0.35) 88%,
+        transparent 98%
+      );
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+      z-index: 1;
+    }
 
     &.open {
       width: min(480px, 50vw);
       opacity: 1;
-      padding: 1rem 2rem 2rem;
+      padding: 0 2rem;
       overflow: visible;
     }
 
@@ -120,27 +135,46 @@
   }
 }
 
-// Column header
+// Horizontal connector at the trigger's level
+.spool-connector {
+  position: absolute;
+  left: -28px;
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.55) 40%,
+    rgba(255, 255, 255, 0.55) 60%,
+    rgba(255, 255, 255, 0.2)
+  );
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+  z-index: 2;
+  pointer-events: none;
+}
+
+// ── Column content ─────────────────────────────────────────
+
 .spool-col-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
   border-bottom: 1px solid $border;
 }
 
 .spool-col-title {
   font-family: $font-heading;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 400;
   color: $text-primary;
   margin: 0;
 }
 
 .spool-col-close {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   border: 1px solid $border;
   background: transparent;
   border-radius: 50%;
@@ -149,7 +183,7 @@
   align-items: center;
   justify-content: center;
   color: $text-muted;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: all 0.2s;
   flex-shrink: 0;
 
@@ -167,46 +201,26 @@
   }
 }
 
-// White thread SVG overlay
-.spool-threads {
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 10;
-  overflow: visible;
-}
-
-.spool-thread {
-  fill: none;
-  stroke: white;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-}
-
-.spool-thread-glow {
-  fill: none;
-  stroke: white;
-  stroke-width: 5;
-  stroke-linecap: round;
-  opacity: 0.25;
-}
-
-.spool-thread-dot {
-  fill: white;
-}
-
-@keyframes drawThread {
-  from { stroke-dashoffset: var(--thread-length); }
-  to { stroke-dashoffset: 0; }
-}
+// ── Responsive ─────────────────────────────────────────────
 
 @media (max-width: $bp-mobile) {
   .spool-col.spool-col-main.narrowed {
     width: 260px;
   }
-  .spool-col.spool-col-child.open {
-    width: min(320px, 80vw);
-    padding: 0.75rem 1.25rem 1.5rem;
+  .spool-col.spool-col-child {
+    margin-left: 16px;
+
+    &.open {
+      width: min(320px, 80vw);
+      padding: 0 1.25rem;
+    }
+
+    &::before {
+      left: -8px;
+    }
+  }
+  .spool-connector {
+    left: -16px;
+    width: 16px;
   }
 }

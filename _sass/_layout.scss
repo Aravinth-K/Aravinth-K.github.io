@@ -1,53 +1,68 @@
-/******************************************************************************
- * Content
- ******************************************************************************/
+.site-content {
+  max-width: $content-width;
+  margin: 0 auto;
+  padding: calc(#{$header-height} + 2rem) 1.5rem 4rem;
+  min-height: calc(100vh - 120px);
+}
 
-body {
-  padding-bottom: 70px;
-  color: var(--global-text-color);
-  background-color: var(--global-bg-color);
+.wide-content {
+  max-width: $content-width-wide;
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    scroll-margin-top: 66px;
+// Home page
+.hero {
+  text-align: center;
+  padding: 3rem 0 4rem;
+
+  h1 {
+    font-size: 2.8rem;
+    font-weight: 300;
+    margin: 0 0 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: $text-secondary;
+    max-width: 500px;
+    margin: 0 auto;
   }
 }
 
-body.fixed-top-nav {
-  // Add some padding for the nav-bar.
-  padding-top: 56px;
+.recent-posts h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: $text-secondary;
+  font-weight: 400;
 }
 
-body.sticky-bottom-footer {
-  // Remove padding below footer.
-  padding-bottom: 0;
+// Pagination
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border;
+  font-size: 0.9rem;
+  color: $text-muted;
 }
 
-.container {
-  max-width: $max-content-width;
-}
+// Footer
+.site-footer {
+  border-top: 1px solid $border;
+  padding: 1.5rem;
+  text-align: center;
 
-// Profile
-.profile {
-  img {
-    width: 100%;
+  .footer-container {
+    max-width: $content-width-wide;
+    margin: 0 auto;
+
+    p {
+      font-size: 0.85rem;
+      color: $text-muted;
+      margin: 0;
+    }
   }
 }
-
-// TODO: redefine content layout.
-
-/******************************************************************************
- * Publications
- ******************************************************************************/
-
-// TODO: redefine publications layout.
-
-/*****************************************************************************
-* Projects
-*****************************************************************************/
-
-// TODO: redefine projects layout.

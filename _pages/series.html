@@ -1,0 +1,34 @@
+---
+layout: page
+title: Series
+permalink: /series/
+---
+
+<div class="series-page">
+  <p>Posts organised into coherent sequences.</p>
+
+  {% assign all_series = site.posts | map: "series" | compact | uniq %}
+
+  {% for series_name in all_series %}
+  <div class="series-card">
+    <h3 class="series-card-title">{{ series_name }}</h3>
+    <ul class="post-list" style="margin-top: 0.75rem;">
+      {% assign series_posts = site.posts | where: "series", series_name | sort: "series_order" %}
+      {% for post in series_posts %}
+      <li class="post-item" style="padding: 0.75rem 0; border: none;">
+        <h4 class="post-item-title" style="font-size: 1.1rem; margin-top: 0;">
+          <a href="{{ post.url }}">{{ post.series_order }}. {{ post.title }}</a>
+        </h4>
+        {% if post.description %}
+        <p class="post-item-excerpt">{{ post.description }}</p>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+
+  {% if all_series.size == 0 %}
+  <p style="color: #8A8A8A; margin-top: 2rem;">No series yet. Add <code>series: "Series Name"</code> and <code>series_order: 1</code> to a post's front matter to start one.</p>
+  {% endif %}
+</div>

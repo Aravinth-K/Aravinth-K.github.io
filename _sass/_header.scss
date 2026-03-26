@@ -1,0 +1,60 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $header-height;
+  background: rgba($bg-primary, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid $border;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: $content-width-wide;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-title {
+  font-family: $font-heading;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: $text-primary;
+  letter-spacing: -0.01em;
+
+  &:hover {
+    color: $accent;
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+
+  a {
+    font-size: 0.9rem;
+    color: $text-secondary;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .nav-links {
+    gap: 1.25rem;
+
+    a {
+      font-size: 0.85rem;
+    }
+  }
+}

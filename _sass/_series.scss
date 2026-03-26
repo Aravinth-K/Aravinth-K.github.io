@@ -1,0 +1,79 @@
+.series-page {
+  .series-list {
+    margin-top: 2rem;
+  }
+
+  .series-card {
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid $border;
+    border-radius: 8px;
+    margin-bottom: 1.25rem;
+
+    .series-card-title {
+      font-family: $font-heading;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      margin-top: 0;
+
+      a {
+        color: $text-primary;
+
+        &:hover {
+          color: $accent;
+        }
+      }
+    }
+
+    .series-card-description {
+      color: $text-secondary;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .series-card-count {
+      font-size: 0.85rem;
+      color: $text-muted;
+    }
+  }
+}
+
+// Series tree visualization
+#series-tree {
+  width: 100%;
+  min-height: 400px;
+  background: white;
+  border: 1px solid $border;
+  border-radius: 8px;
+  margin: 2rem 0;
+  overflow: hidden;
+
+  svg {
+    display: block;
+  }
+
+  .node circle {
+    fill: $accent;
+    stroke: white;
+    stroke-width: 2px;
+    cursor: pointer;
+    transition: fill 0.2s;
+
+    &:hover {
+      fill: $accent-hover;
+    }
+  }
+
+  .node text {
+    font-family: $font-body;
+    font-size: 12px;
+    fill: $text-secondary;
+  }
+
+  .link {
+    fill: none;
+    stroke: $border;
+    stroke-width: 1.5px;
+  }
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include head.html %}
+<body>
+  {% include header.html %}
+  <main class="site-content">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+
+  <!-- Spool (collapsible pane) system -->
+  <div id="spool-overlay" class="spool-overlay"></div>
+  <div id="spool-container" class="spool-container"></div>
+
+  <script src="{{ '/assets/js/spool.js' | relative_url }}"></script>
+  {% if page.interactive %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="{{ '/assets/js/surface.js' | relative_url }}"></script>
+  {% endif %}
+  {% if page.series_graph %}
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="{{ '/assets/js/series-graph.js' | relative_url }}"></script>
+  {% endif %}
+  {% if page.enable_math != false %}
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+  {% endif %}
+</body>
+</html>

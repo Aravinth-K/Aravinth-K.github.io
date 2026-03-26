@@ -1,0 +1,182 @@
+// Spool — collapsible right-sliding detail panes
+
+// The trigger button in content
+.spool {
+  margin: 1.5rem 0;
+
+  .spool-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: $bg-secondary;
+    border: 1px solid $border;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: $font-body;
+    font-size: 0.9rem;
+    color: $accent;
+    transition: all 0.2s;
+
+    &:hover {
+      background: $bg-tertiary;
+      border-color: $accent-light;
+    }
+
+    &.active {
+      background: $accent;
+      color: white;
+      border-color: $accent;
+    }
+
+    .spool-icon {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s;
+    }
+
+    &.active .spool-icon {
+      transform: rotate(90deg);
+    }
+  }
+
+  .spool-content {
+    display: none;
+  }
+}
+
+// The overlay
+.spool-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 200;
+
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+// The sliding pane container
+.spool-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  z-index: 300;
+  pointer-events: none;
+
+  &.active {
+    pointer-events: auto;
+  }
+}
+
+// Individual pane
+.spool-pane {
+  width: min(480px, 85vw);
+  height: 100vh;
+  overflow-y: auto;
+  padding: calc(#{$header-height} + 1.5rem) 2rem 2rem;
+  border-left: 1px solid $border;
+  box-shadow: -4px 0 24px $shadow;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  // Depth coloring
+  &[data-depth="0"] { background: $spool-bg-0; }
+  &[data-depth="1"] { background: $spool-bg-1; }
+  &[data-depth="2"] { background: $spool-bg-2; }
+  &[data-depth="3"] { background: $spool-bg-3; }
+
+  .spool-pane-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $border;
+  }
+
+  .spool-pane-title {
+    font-family: $font-heading;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: $text-primary;
+    margin: 0;
+  }
+
+  .spool-pane-close {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: $bg-secondary;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $text-secondary;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    flex-shrink: 0;
+
+    &:hover {
+      background: $bg-tertiary;
+      color: $text-primary;
+    }
+  }
+
+  // Breadcrumb trail
+  .spool-breadcrumb {
+    font-size: 0.8rem;
+    color: $text-muted;
+    margin-bottom: 1rem;
+
+    span {
+      &:not(:last-child)::after {
+        content: " \2192 ";
+        color: $border;
+      }
+    }
+  }
+
+  // Content styles within pane
+  .spool-pane-body {
+    line-height: 1.7;
+
+    h1, h2, h3, h4 {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    // Nested spool triggers in pane
+    .spool {
+      margin: 1rem 0;
+    }
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .spool-pane {
+    width: 92vw;
+    padding: calc(#{$header-height} + 1rem) 1.25rem 1.5rem;
+  }
+}

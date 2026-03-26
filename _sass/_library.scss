@@ -1,0 +1,64 @@
+.library-grid {
+  display: grid;
+  gap: 1.25rem;
+
+  .library-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: white;
+    border: 1px solid $border;
+    border-radius: 8px;
+    transition: box-shadow 0.2s;
+
+    &:hover {
+      box-shadow: 0 2px 12px $shadow;
+    }
+
+    .library-icon {
+      width: 40px;
+      height: 48px;
+      background: $accent;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    .library-info {
+      flex: 1;
+
+      .library-title {
+        font-family: $font-heading;
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
+
+        a {
+          color: $text-primary;
+
+          &:hover {
+            color: $accent;
+          }
+        }
+      }
+
+      .library-description {
+        font-size: 0.88rem;
+        color: $text-secondary;
+        line-height: 1.5;
+      }
+
+      .library-meta {
+        font-size: 0.8rem;
+        color: $text-muted;
+        margin-top: 0.35rem;
+      }
+    }
+  }
+}

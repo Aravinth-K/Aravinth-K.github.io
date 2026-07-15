@@ -11,19 +11,38 @@
   <meta property="og:url" content="{{ page.url | absolute_url }}">
 
   <script>
-    // Stamp the theme before first paint to avoid a flash.
+    // Stamp theme and palette before first paint to avoid a flash.
+    // Palettes are defined in _data/palettes.yml; the maps below are
+    // generated from it at build time.
     (function () {
+      var PAPER = { {% for p in site.data.palettes %}'{{ p.name }}': ['{{ p.light.paper }}', '{{ p.dark.paper }}']{% unless forloop.last %}, {% endunless %}{% endfor %} };
+      {% assign first_palette = site.data.palettes | first %}var DEFAULT_PALETTE = '{{ first_palette.name }}';
+
       var t;
       try { t = localStorage.getItem('theme'); } catch (e) { /* ignore */ }
       if (t !== 'light' && t !== 'dark') {
         t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
           ? 'dark' : 'light';
       }
-      document.documentElement.setAttribute('data-theme', t);
-      if (t === 'dark') {
-        var m = document.querySelector('meta[name="theme-color"]');
-        if (m) m.setAttribute('content', '#171210');
+
+      var p = null;
+      try { p = new URLSearchParams(window.location.search).get('palette'); } catch (e) { /* ignore */ }
+      if (p && PAPER[p]) {
+        try { localStorage.setItem('palette', p); } catch (e) { /* ignore */ }
+      } else {
+        p = null;
       }
+      if (!p) {
+        try { p = localStorage.getItem('palette'); } catch (e) { /* ignore */ }
+      }
+      if (!p || !PAPER[p]) p = DEFAULT_PALETTE;
+
+      var root = document.documentElement;
+      root.setAttribute('data-theme', t);
+      root.setAttribute('data-palette', p);
+
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m && PAPER[p]) m.setAttribute('content', PAPER[p][t === 'dark' ? 1 : 0]);
     })();
   </script>
 

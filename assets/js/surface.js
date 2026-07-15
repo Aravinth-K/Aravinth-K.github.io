@@ -39,14 +39,14 @@ function createSurface(containerId, options) {
 
   if (wireframe) {
     material = new THREE.MeshBasicMaterial({
-      color: themeColor('--teal', '#227E72'),
+      color: themeColor('--counter', '#227E72'),
       wireframe: true,
       transparent: true,
       opacity: 0.6
     });
   } else {
     material = new THREE.MeshPhongMaterial({
-      color: themeColor('--teal', '#227E72'),
+      color: themeColor('--counter', '#227E72'),
       side: THREE.DoubleSide,
       transparent: true,
       opacity: 0.85,
@@ -75,7 +75,7 @@ function createSurface(containerId, options) {
   // Re-dye the scene when the lamp is switched
   window.addEventListener('themechange', function () {
     scene.background = themeColor('--paper-low', '#F3EDDF');
-    material.color = themeColor('--teal', '#227E72');
+    material.color = themeColor('--counter', '#227E72');
     var gc = themeColor('--line', '#E7DECF');
     if (gridHelper.material instanceof Array) {
       gridHelper.material.forEach(function (mat) { mat.color = gc; });

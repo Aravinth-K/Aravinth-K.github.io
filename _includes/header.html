@@ -16,6 +16,30 @@
         <a class="thread-link" href="{{ '/library/' | relative_url }}">Library</a>
         <a class="thread-link" href="{{ '/about/' | relative_url }}">About</a>
       </div>
+      <div class="palette-picker">
+        <button class="palette-toggle" type="button" aria-label="Choose colour palette"
+                aria-haspopup="true" aria-expanded="false">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <circle cx="5" cy="6" r="2.6" stroke="currentColor" stroke-width="1.2" fill="none"/>
+            <circle cx="11" cy="6" r="2.6" stroke="currentColor" stroke-width="1.2" fill="none"/>
+            <circle cx="8" cy="10.8" r="2.6" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          </svg>
+        </button>
+        <div class="palette-menu" hidden>
+          <span class="palette-menu-label">Thread &amp; paper</span>
+          {% for palette in site.data.palettes %}
+          <button class="palette-option" type="button" data-palette="{{ palette.name }}">
+            <span class="palette-swatches" aria-hidden="true">
+              <span class="sw sw-paper"></span><span class="sw sw-thread"></span><span class="sw sw-counter"></span>
+            </span>
+            <span class="palette-name">{{ palette.label }}</span>
+            <svg class="palette-current-knot" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+              <circle cx="5" cy="5" r="3.4" fill="currentColor"/>
+            </svg>
+          </button>
+          {% endfor %}
+        </div>
+      </div>
       <button class="theme-toggle" type="button" aria-label="Toggle light and dark theme">
         <svg class="icon-sun" viewBox="0 0 16 16" aria-hidden="true">
           <circle cx="8" cy="8" r="3.2" stroke="currentColor" stroke-width="1.3" fill="none"/>

@@ -10,3 +10,42 @@
 @import "library";
 @import "series";
 @import "syntax";
+
+// ── Palettes ────────────────────────────────────────────────
+// Generated from _data/palettes.yml — edit colours there, never
+// here. The first palette is the default (also used before JS
+// stamps data-palette, and by the no-JS dark fallback).
+
+{% assign default_palette = site.data.palettes | first %}
+:root {
+{% for token in default_palette.light %}  --{{ token[0] }}: {{ token[1] }};
+{% endfor %}}
+
+:root[data-theme='dark'] {
+{% for token in default_palette.dark %}  --{{ token[0] }}: {{ token[1] }};
+{% endfor %}}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+{% for token in default_palette.dark %}    --{{ token[0] }}: {{ token[1] }};
+{% endfor %}  }
+}
+
+{% for palette in site.data.palettes %}
+:root[data-palette='{{ palette.name }}'] {
+{% for token in palette.light %}  --{{ token[0] }}: {{ token[1] }};
+{% endfor %}}
+
+:root[data-palette='{{ palette.name }}'][data-theme='dark'] {
+{% for token in palette.dark %}  --{{ token[0] }}: {{ token[1] }};
+{% endfor %}}
+
+.palette-option[data-palette='{{ palette.name }}'] {
+  --sw-paper: {{ palette.light.paper }};
+  --sw-thread: {{ palette.light.thread }};
+  --sw-counter: {{ palette.light.counter }};
+  --sw-paper-dark: {{ palette.dark.paper }};
+  --sw-thread-dark: {{ palette.dark.thread }};
+  --sw-counter-dark: {{ palette.dark.counter }};
+}
+{% endfor %}

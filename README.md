@@ -161,26 +161,37 @@ git push
 
 The site usually updates within a couple of minutes.
 
-## Theme
+## Theme & colour palettes
 
-The site has light ("warm paper") and dark ("lamplight") themes. Visitors get their OS preference by default and can flip the toggle in the header; the choice persists in `localStorage`. Both palettes live in `_sass/_variables.scss` as CSS custom properties — edit the `:root` block for light and the `:root[data-theme='dark']` block for dark (keep the `prefers-color-scheme` fallback block in sync).
+The site has light ("warm paper") and dark ("lamplight") themes, and a set of swappable **colour palettes**. Visitors get their OS theme by default and can flip the lamp toggle in the header; the swatch button beside it opens the palette picker. Both choices persist in `localStorage`.
+
+**All colours live in one file: `_data/palettes.yml`.** Each entry defines a named palette with a full light and dark set of tokens; from that single file the build generates the CSS, the picker menu, and the browser-chrome tint. Nothing else needs editing.
+
+- **Try a palette**: use the picker in the header, or open any page with `?palette=indigo` (etc.) — handy for comparing side by side in two windows.
+- **Add a palette**: copy an existing entry in `_data/palettes.yml`, rename it, change the values. It appears in the picker automatically.
+- **Retire a palette**: delete its entry. (Visitors who had it stored fall back to the default.)
+- **Choose the winner**: move it to the top of the file — the first entry is the site default, used before JavaScript runs and for the no-JS dark fallback.
+- Palette-independent details (paper grain, shadows) live in `_sass/_variables.scss`.
+
+Current palettes: **Ember** (warm cream & coral thread), **Indigo** (cool bone & ultramarine, copper counterpoint), **Moss** (sage & fern, madder counterpoint), **Mulberry** (blush & orchid, teal counterpoint), **Sumi** (monochrome ink with a vermilion seal).
 
 ## Customising
 
 | What                | Where                                          |
 |---------------------|------------------------------------------------|
 | Site title & URL    | `_config.yml`                                  |
-| Colours (both themes) | `_sass/_variables.scss`                      |
+| Colour palettes (all of them) | `_data/palettes.yml`                 |
 | Typography          | `_sass/_variables.scss` (fonts load in `_includes/head.html`) |
 | Page layout, hero, footer, 404 | `_sass/_layout.scss`                |
 | Nav links           | `_includes/header.html`                        |
 | Footer text         | `_includes/footer.html`                        |
 | About page          | `_pages/about.md`                              |
-| Theme toggle, reading progress, reveals | `assets/js/site.js`        |
+| Theme toggle, palette picker, reading progress | `assets/js/site.js` |
 
 ## File structure at a glance
 
 ```
+_data/palettes.yml → all colour palettes (the single source of truth)
 _posts/          → blog posts (markdown)
 _pages/          → standalone pages (about, blog listing, library, series)
 _layouts/        → HTML templates

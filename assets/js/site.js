@@ -1,23 +1,46 @@
-// Site chrome: theme toggle, reading-progress thread, reveals.
-// The theme itself is stamped on <html data-theme> by the boot
-// script in head.html before first paint.
+// Site chrome: theme toggle, palette picker, reading-progress
+// thread, reveals. Theme and palette are stamped on <html> by the
+// boot script in head.html before first paint.
 
 (function () {
   'use strict';
 
-  var THEME_COLORS = { light: '#FBF7EF', dark: '#171210' };
+  var root = document.documentElement;
 
   function currentTheme() {
-    return document.documentElement.getAttribute('data-theme') === 'dark'
-      ? 'dark' : 'light';
+    return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  }
+
+  // The browser chrome tint always follows the live paper colour,
+  // whatever palette and theme are active.
+  function syncThemeColorMeta() {
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) return;
+    var paper = getComputedStyle(root).getPropertyValue('--paper').trim();
+    if (paper) meta.setAttribute('content', paper);
+  }
+
+  function notifyThemeChange() {
+    window.dispatchEvent(new CustomEvent('themechange', {
+      detail: {
+        theme: currentTheme(),
+        palette: root.getAttribute('data-palette')
+      }
+    }));
   }
 
   function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', THEME_COLORS[theme]);
+    root.setAttribute('data-theme', theme);
     try { localStorage.setItem('theme', theme); } catch (e) { /* private mode */ }
-    window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: theme } }));
+    syncThemeColorMeta();
+    notifyThemeChange();
+  }
+
+  function applyPalette(name) {
+    root.setAttribute('data-palette', name);
+    try { localStorage.setItem('palette', name); } catch (e) { /* private mode */ }
+    syncThemeColorMeta();
+    notifyThemeChange();
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -28,6 +51,55 @@
         applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
       });
     }
+
+    // ── Palette picker ──────────────────────────────────────
+    var picker = document.querySelector('.palette-picker');
+    if (picker) {
+      var pToggle = picker.querySelector('.palette-toggle');
+      var menu = picker.querySelector('.palette-menu');
+      var options = Array.prototype.slice.call(picker.querySelectorAll('.palette-option'));
+
+      var markCurrent = function () {
+        var current = root.getAttribute('data-palette');
+        options.forEach(function (o) {
+          o.setAttribute('aria-pressed', o.dataset.palette === current ? 'true' : 'false');
+        });
+      };
+
+      var setOpen = function (open) {
+        menu.hidden = !open;
+        pToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      };
+
+      pToggle.addEventListener('click', function () {
+        setOpen(menu.hidden);
+      });
+
+      options.forEach(function (o) {
+        o.addEventListener('click', function () {
+          applyPalette(o.dataset.palette);
+          markCurrent();
+          setOpen(false);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!menu.hidden && !picker.contains(e.target)) setOpen(false);
+      });
+
+      // Escape closes the menu before anything else (e.g. spools)
+      // reacts to the same keypress.
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !menu.hidden) {
+          setOpen(false);
+          e.stopImmediatePropagation();
+        }
+      });
+
+      markCurrent();
+    }
+
+    syncThemeColorMeta();
 
     // Follow OS changes unless the visitor has chosen explicitly
     if (window.matchMedia) {

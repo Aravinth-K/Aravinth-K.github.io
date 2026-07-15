@@ -173,7 +173,7 @@ The site has light ("warm paper") and dark ("lamplight") themes, and a set of sw
 - **Choose the winner**: move it to the top of the file — the first entry is the site default, used before JavaScript runs and for the no-JS dark fallback.
 - Palette-independent details (paper grain, shadows) live in `_sass/_variables.scss`.
 
-Current palettes: **Ember** (warm cream & coral thread), **Indigo** (cool bone & ultramarine, copper counterpoint), **Moss** (sage & fern, madder counterpoint), **Mulberry** (blush & orchid, teal counterpoint), **Sumi** (monochrome ink with a vermilion seal).
+Current palettes: **Ember** (warm cream & coral thread), **Indigo** (cool bone & ultramarine, copper counterpoint), **Moss** (sage & fern, madder counterpoint), **Mulberry** (blush & orchid, teal counterpoint), **Kappa** (research-plot steel blue, navy ink, green counterpoint, crimson selection — drawn from `returns_kv0.5.png`), **Sumi** (monochrome ink with a vermilion seal).
 
 ## Customising
 

@@ -247,6 +247,66 @@
     syn-function: "#9BA8E8"
     syn-punct: "#ECE0E4"
 
+# Drawn from returns_kv0.5.png — seaborn research-plot colours:
+# steel-blue curves, navy titles, crimson + green series, pale
+# confidence washes, blue-grey gridlines.
+- name: kappa
+  label: Kappa
+  light:
+    paper: "#FAFBFD"
+    paper-high: "#FFFFFF"
+    paper-low: "#EDF2F9"
+    paper-deep: "#E1E9F4"
+    ink: "#212F4D"
+    ink-soft: "#4F6079"
+    ink-faint: "#8493A9"
+    accent: "#375D9E"
+    accent-strong: "#27406E"
+    thread: "#4C72B0"
+    thread-bright: "#7FA1D9"
+    thread-tint: "rgba(76, 114, 176, 0.08)"
+    thread-tint-strong: "rgba(76, 114, 176, 0.16)"
+    glow: "rgba(76, 114, 176, 0.22)"
+    glow-strong: "rgba(76, 114, 176, 0.38)"
+    counter: "#2F8C4A"
+    line: "#D9E1EE"
+    line-strong: "#BFCCE0"
+    header-veil: "rgba(250, 251, 253, 0.88)"
+    selection: "rgba(196, 78, 82, 0.16)"
+    syn-comment: "#8493A9"
+    syn-keyword: "#375D9E"
+    syn-string: "#2E7D43"
+    syn-number: "#B8474E"
+    syn-function: "#45577E"
+    syn-punct: "#212F4D"
+  dark:
+    paper: "#0F1522"
+    paper-high: "#171F30"
+    paper-low: "#0A0F19"
+    paper-deep: "#060A11"
+    ink: "#DCE4F0"
+    ink-soft: "#9AA8BE"
+    ink-faint: "#66748C"
+    accent: "#85A9E8"
+    accent-strong: "#A9C4F5"
+    thread: "#6390D6"
+    thread-bright: "#9BB9EF"
+    thread-tint: "rgba(99, 144, 214, 0.12)"
+    thread-tint-strong: "rgba(99, 144, 214, 0.22)"
+    glow: "rgba(99, 144, 214, 0.32)"
+    glow-strong: "rgba(99, 144, 214, 0.50)"
+    counter: "#52B873"
+    line: "#1F2A3E"
+    line-strong: "#2E3C56"
+    header-veil: "rgba(15, 21, 34, 0.85)"
+    selection: "rgba(214, 110, 120, 0.26)"
+    syn-comment: "#66748C"
+    syn-keyword: "#85A9E8"
+    syn-string: "#63C888"
+    syn-number: "#E8848B"
+    syn-function: "#A9B7D9"
+    syn-punct: "#DCE4F0"
+
 - name: sumi
   label: Sumi
   light:

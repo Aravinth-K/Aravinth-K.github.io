@@ -9,9 +9,16 @@ function createSurface(containerId, options) {
   var width = container.clientWidth;
   var height = options.height || 450;
 
+  // Pull colours from the live theme so the surface sits on the
+  // same paper as everything else.
+  function themeColor(name, fallback) {
+    var v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return new THREE.Color(v || fallback);
+  }
+
   // Scene setup
   var scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xF8F7F4);
+  scene.background = themeColor('--paper-low', '#F3EDDF');
 
   var camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
   camera.position.set(3, 2.5, 3);
@@ -32,14 +39,14 @@ function createSurface(containerId, options) {
 
   if (wireframe) {
     material = new THREE.MeshBasicMaterial({
-      color: 0x3D6B5E,
+      color: themeColor('--teal', '#227E72'),
       wireframe: true,
       transparent: true,
       opacity: 0.6
     });
   } else {
     material = new THREE.MeshPhongMaterial({
-      color: 0x3D6B5E,
+      color: themeColor('--teal', '#227E72'),
       side: THREE.DoubleSide,
       transparent: true,
       opacity: 0.85,
@@ -60,9 +67,22 @@ function createSurface(containerId, options) {
   }
 
   // Grid helper for context
-  var gridHelper = new THREE.GridHelper(4, 20, 0xE0DED8, 0xE0DED8);
+  var gridColor = themeColor('--line', '#E7DECF');
+  var gridHelper = new THREE.GridHelper(4, 20, gridColor, gridColor);
   gridHelper.position.y = -0.5;
   scene.add(gridHelper);
+
+  // Re-dye the scene when the lamp is switched
+  window.addEventListener('themechange', function () {
+    scene.background = themeColor('--paper-low', '#F3EDDF');
+    material.color = themeColor('--teal', '#227E72');
+    var gc = themeColor('--line', '#E7DECF');
+    if (gridHelper.material instanceof Array) {
+      gridHelper.material.forEach(function (mat) { mat.color = gc; });
+    } else {
+      gridHelper.material.color = gc;
+    }
+  });
 
   // Noise function (simple multi-frequency sinusoidal)
   function noise(x, y, t) {

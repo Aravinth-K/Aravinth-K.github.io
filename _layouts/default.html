@@ -2,20 +2,25 @@
 <html lang="en">
 {% include head.html %}
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   {% include header.html %}
-  <main class="site-content">
+  {% if page.layout == 'post' %}
+  <div class="progress-thread" aria-hidden="true"></div>
+  {% endif %}
+  <main class="site-content" id="main">
     {{ content }}
   </main>
   {% include footer.html %}
 
-  <script src="{{ '/assets/js/spool.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/site.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+  <script src="{{ '/assets/js/spool.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
   {% if page.interactive %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="{{ '/assets/js/surface.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/surface.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
   {% endif %}
   {% if page.series_graph %}
   <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
-  <script src="{{ '/assets/js/series-graph.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/series-graph.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
   {% endif %}
   {% if page.enable_math != false %}
   <script>

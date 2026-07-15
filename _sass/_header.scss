@@ -4,11 +4,12 @@
   left: 0;
   right: 0;
   height: $header-height;
-  background: rgba($bg-primary, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid $border;
+  background: var(--header-veil);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  border-bottom: 1px solid $line;
   z-index: 100;
+  transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 
 .nav-container {
@@ -19,42 +20,138 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .site-title {
-  font-family: $font-heading;
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: $text-primary;
+  font-family: $font-display;
+  font-size: 1.14rem;
+  font-weight: 520;
+  color: $ink;
   letter-spacing: -0.01em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  // Tiny spool glyph beside the name
+  .title-spool {
+    flex-shrink: 0;
+    color: $thread;
+    filter: drop-shadow(0 0 4px $glow);
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
 
   &:hover {
     color: $accent;
-  }
-}
 
-.nav-links {
-  display: flex;
-  gap: 2rem;
-
-  a {
-    font-size: 0.9rem;
-    color: $text-secondary;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-
-    &:hover {
-      color: $accent;
+    .title-spool {
+      transform: rotate(180deg);
     }
   }
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  flex-shrink: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.6rem;
+
+  a {
+    font-size: 0.88rem;
+    color: $ink-soft;
+    letter-spacing: 0.03em;
+
+    &:hover,
+    &[aria-current='page'] {
+      color: $accent;
+    }
+
+    &[aria-current='page'] {
+      font-weight: 560;
+    }
+  }
+}
+
+// Theme toggle — a little lamp switch
+.theme-toggle {
+  appearance: none;
+  border: 1px solid $line;
+  background: transparent;
+  color: $ink-soft;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.25s ease, border-color 0.25s ease,
+              box-shadow 0.35s ease, transform 0.2s ease;
+
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .icon-moon { display: none; }
+  .icon-sun { display: block; }
+
+  &:hover {
+    color: $accent;
+    border-color: $thread;
+    box-shadow: 0 0 10px $glow;
+    transform: rotate(15deg);
+  }
+}
+
+:root[data-theme='dark'] .theme-toggle {
+  .icon-moon { display: block; }
+  .icon-sun { display: none; }
+}
+
+// Reading progress — a thread spooling across the header's hem
+.progress-thread {
+  position: fixed;
+  top: calc(#{$header-height} - 1px);
+  left: 0;
+  height: 2px;
+  width: 100%;
+  z-index: 101;
+  pointer-events: none;
+  background: linear-gradient(90deg, $thread, $thread-bright);
+  box-shadow: 0 0 8px $glow-strong;
+  transform: scaleX(var(--read-progress, 0));
+  transform-origin: left center;
+}
+
 @media (max-width: $bp-mobile) {
+  .nav-container {
+    padding: 0 1rem;
+  }
+
+  .site-title span.title-text {
+    display: none; // spool glyph stands in for the name on tiny screens
+  }
+
+  .nav-right {
+    gap: 1rem;
+  }
+
   .nav-links {
-    gap: 1.25rem;
+    gap: 1rem;
 
     a {
-      font-size: 0.85rem;
+      font-size: 0.84rem;
     }
   }
 }

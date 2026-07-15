@@ -72,7 +72,7 @@ For more control (sizing, captions), use raw HTML:
 
 ## Using the spool system
 
-Spools let you hide detail (proofs, derivations, tangents) behind a clickable trigger. When clicked, the page splits and the detail appears in a new column to the right, aligned with where you clicked. You can nest spools for deeper levels.
+Spools let you hide detail (proofs, derivations, tangents) behind a clickable trigger. On a wide screen the page splits and the detail unspools into a new column to the right, joined to the trigger by a thread; on small screens (phones) the detail unfolds inline beneath the trigger instead. You can nest spools for deeper levels. Escape closes the deepest pane.
 
 In your markdown, write:
 
@@ -161,17 +161,22 @@ git push
 
 The site usually updates within a couple of minutes.
 
+## Theme
+
+The site has light ("warm paper") and dark ("lamplight") themes. Visitors get their OS preference by default and can flip the toggle in the header; the choice persists in `localStorage`. Both palettes live in `_sass/_variables.scss` as CSS custom properties — edit the `:root` block for light and the `:root[data-theme='dark']` block for dark (keep the `prefers-color-scheme` fallback block in sync).
+
 ## Customising
 
-| What                | Where                         |
-|---------------------|-------------------------------|
-| Site title & URL    | `_config.yml`                 |
-| Colours             | `_sass/_variables.scss`       |
-| Typography          | `_sass/_variables.scss`       |
-| Page layout         | `_sass/_layout.scss`          |
-| Nav links           | `_includes/header.html`       |
-| Footer              | `_includes/footer.html`       |
-| About page          | `_pages/about.md`             |
+| What                | Where                                          |
+|---------------------|------------------------------------------------|
+| Site title & URL    | `_config.yml`                                  |
+| Colours (both themes) | `_sass/_variables.scss`                      |
+| Typography          | `_sass/_variables.scss` (fonts load in `_includes/head.html`) |
+| Page layout, hero, footer, 404 | `_sass/_layout.scss`                |
+| Nav links           | `_includes/header.html`                        |
+| Footer text         | `_includes/footer.html`                        |
+| About page          | `_pages/about.md`                              |
+| Theme toggle, reading progress, reveals | `assets/js/site.js`        |
 
 ## File structure at a glance
 
@@ -183,7 +188,7 @@ _includes/       → reusable HTML fragments (head, header, footer)
 _sass/           → stylesheets (SCSS)
 assets/
   css/           → compiled CSS entry point
-  js/            → JavaScript (spool, surface viz, series tree)
+  js/            → JavaScript (site chrome, spool, surface viz, series tree)
   img/           → images
   pdf/           → PDFs for the library
 _config.yml      → site configuration

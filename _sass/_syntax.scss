@@ -1,16 +1,15 @@
-// Rouge syntax highlighting
+// Rouge syntax highlighting — warm manuscript palette, themed
+// through the --syn-* custom properties.
 .highlight {
-  .c, .cm, .c1, .cs  { color: #6a737d; font-style: italic; }
-  .k, .kd, .kn, .kp, .kr, .kt { color: #d73a49; }
-  .s, .sb, .sc, .sd, .s2, .sh, .s1, .sx { color: #032f62; }
-  .si { color: #032f62; }
-  .na { color: #005cc5; }
-  .nb { color: #005cc5; }
-  .nc { color: #6f42c1; }
-  .nf, .nx { color: #6f42c1; }
-  .nn { color: #005cc5; }
-  .mi, .mf, .mh, .mo { color: #005cc5; }
-  .o, .ow { color: #d73a49; }
-  .p  { color: $text-primary; }
-  .err { color: #d73a49; background: transparent; }
+  .c, .cm, .c1, .cs, .cd { color: var(--syn-comment); font-style: italic; }
+  .k, .kd, .kn, .kp, .kr, .kt, .kv { color: var(--syn-keyword); }
+  .s, .sb, .sc, .sd, .s2, .sh, .s1, .sx, .sr, .ss, .si { color: var(--syn-string); }
+  .na, .nb, .nn, .nv, .no { color: var(--syn-number); }
+  .nc, .nf, .nx { color: var(--syn-function); }
+  .mi, .mf, .mh, .mo, .il { color: var(--syn-number); }
+  .o, .ow { color: var(--syn-keyword); }
+  .p { color: var(--syn-punct); }
+  .gd { color: var(--syn-keyword); }
+  .gi { color: var(--syn-string); }
+  .err { color: var(--syn-keyword); background: transparent; }
 }

@@ -1,69 +1,160 @@
 .post-header {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.8rem;
 
   .post-title {
-    font-size: 2.4rem;
-    font-weight: 300;
-    line-height: 1.2;
-    margin-bottom: 0.75rem;
-    margin-top: 0;
+    font-size: clamp(2.1rem, 5.5vw, 2.9rem);
+    font-weight: 420;
+    line-height: 1.12;
+    letter-spacing: -0.018em;
+    margin: 0 0 1rem;
   }
 
   .post-meta {
-    color: $text-muted;
-    font-size: 0.88rem;
+    @extend %smallcaps;
     display: flex;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 0.65rem;
     flex-wrap: wrap;
+
+    .meta-knot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: $thread;
+      box-shadow: 0 0 5px $glow;
+    }
+
+    .meta-series {
+      color: $accent;
+    }
   }
 
   .post-tags {
     display: flex;
     gap: 0.5rem;
-    margin-top: 0.75rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
   }
 
   .tag {
-    font-size: 0.78rem;
-    padding: 0.2rem 0.65rem;
-    background: $bg-secondary;
-    border: 1px solid $border;
-    border-radius: 20px;
-    color: $text-secondary;
+    @extend %smallcaps;
+    font-size: 0.68rem;
+    padding: 0.22rem 0.7rem;
+    border: 1px dashed $line-strong;
+    border-radius: 999px;
+    color: $ink-soft;
+    transition: border-color 0.25s ease, color 0.25s ease;
+
+    &:hover {
+      border-color: $thread;
+      color: $accent;
+    }
   }
 }
 
 .post-content {
   h2 {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid $border;
+    margin-top: 3.2rem;
+
+    // A short stitch introduces each section
+    &::before {
+      content: '';
+      display: block;
+      width: 58px;
+      height: 8px;
+      margin-bottom: 1.1rem;
+      background: $thread;
+      -webkit-mask-image: $stitch-mask;
+      mask-image: $stitch-mask;
+      -webkit-mask-repeat: repeat-x;
+      mask-repeat: repeat-x;
+      -webkit-mask-position: left center;
+      mask-position: left center;
+      opacity: 0.8;
+    }
+  }
+
+  > p:first-of-type {
+    font-size: 1.08rem;
   }
 }
 
-// Blog listing
-.post-list {
+// ── Thread list ─────────────────────────────────────────────
+// Shared by home, blog and series: entries knotted onto one
+// vertical thread running down the left margin.
+
+.thread-list {
   list-style: none;
   padding: 0;
+  margin: 0;
+  position: relative;
+
+  // the thread itself
+  &::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 0.9rem;
+    bottom: 0.4rem;
+    width: 1.5px;
+    background: linear-gradient(
+      to bottom,
+      $thread 0%,
+      var(--thread-tint-strong) 100%
+    );
+    box-shadow: 0 0 6px $glow;
+    opacity: 0.75;
+  }
 }
 
-.post-item {
-  padding: 1.75rem 0;
-  border-bottom: 1px solid $border;
+.thread-item {
+  position: relative;
+  padding: 0 0 2.1rem 2.1rem;
 
-  &:first-child {
-    padding-top: 0;
+  &:last-child {
+    padding-bottom: 0.5rem;
   }
 
-  .post-item-title {
-    font-family: $font-heading;
-    font-size: 1.4rem;
-    font-weight: 400;
-    margin-bottom: 0.4rem;
-    margin-top: 0;
+  // the knot
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.52rem;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: $paper;
+    border: 1.5px solid $thread;
+    box-shadow: 0 0 7px $glow;
+    transition: background-color 0.25s ease, box-shadow 0.25s ease,
+                transform 0.25s ease;
+  }
+
+  &:hover::before {
+    background: $thread;
+    box-shadow: 0 0 12px $glow-strong;
+    transform: scale(1.15);
+  }
+
+  .thread-item-date {
+    @extend %smallcaps;
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+
+  .thread-item-title {
+    font-family: $font-display;
+    font-size: 1.42rem;
+    font-weight: 460;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin: 0 0 0.3rem;
 
     a {
-      color: $text-primary;
+      color: $ink;
+      text-decoration: none;
+      transition: color 0.25s ease;
 
       &:hover {
         color: $accent;
@@ -71,38 +162,64 @@
     }
   }
 
-  .post-item-meta {
-    font-size: 0.85rem;
-    color: $text-muted;
-    margin-bottom: 0.5rem;
+  .thread-item-excerpt {
+    color: $ink-soft;
+    font-size: 0.96rem;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 36rem;
   }
 
-  .post-item-excerpt {
-    color: $text-secondary;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 0;
+  .thread-item-series {
+    color: $accent;
+    font-style: italic;
   }
 }
 
-// Series indicator on posts
+// Compact variant (series page listings)
+.thread-list.compact .thread-item {
+  padding-bottom: 1.2rem;
+
+  .thread-item-title {
+    font-size: 1.12rem;
+  }
+
+  .thread-item-excerpt {
+    font-size: 0.9rem;
+  }
+}
+
+// ── Series banner on posts ──────────────────────────────────
+
 .series-banner {
-  background: $bg-secondary;
-  border: 1px solid $border;
-  border-radius: 8px;
-  padding: 1rem 1.25rem;
-  margin-bottom: 2rem;
-  font-size: 0.9rem;
+  position: relative;
+  border: 1px solid $line;
+  border-left: 2px solid $thread;
+  background: $paper-high;
+  border-radius: 10px;
+  padding: 0.9rem 1.2rem 0.9rem 1.4rem;
+  margin-bottom: 2.4rem;
+  font-size: 0.92rem;
+  box-shadow: var(--shadow-soft);
+
+  .series-banner-label {
+    @extend %smallcaps;
+    display: block;
+    margin-bottom: 0.1rem;
+  }
 
   .series-name {
-    font-weight: 500;
-    color: $accent;
+    font-family: $font-display;
+    font-style: italic;
+    font-size: 1.06rem;
+    color: $ink;
   }
 
   .series-nav {
-    margin-top: 0.5rem;
+    margin-top: 0.55rem;
     display: flex;
-    gap: 1rem;
+    gap: 1.2rem;
+    flex-wrap: wrap;
 
     a {
       font-size: 0.85rem;

@@ -3,30 +3,37 @@ layout: default
 ---
 <div class="home">
   <section class="hero">
-    <h1>{{ site.title }}</h1>
-    <p class="hero-subtitle">{{ site.description }}</p>
+    <span class="hero-eyebrow reveal">A notebook, unspooled</span>
+    <h1 class="reveal" style="--reveal-delay: 0.1s">{{ site.title }}</h1>
+
+    <svg class="hero-thread" viewBox="0 0 420 44" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+      <path class="hero-thread-spool" d="M6,12 v20 M13,12 v20 M6,16 h7 M6,21 h7 M6,26 h7" />
+      <path class="hero-thread-path" d="M13,22 C60,12 110,32 158,22 C183,17 194,8 204,14 C214,20 208,31 197,29 C186,27 189,13 206,10 C228,6 262,30 302,25 C342,20 378,24 404,22 C410,21.5 413,25 415,29" />
+    </svg>
+
+    <p class="hero-subtitle reveal" style="--reveal-delay: 0.25s">{{ site.description }}</p>
   </section>
 
   {{ content }}
 
   <section class="recent-posts">
-    <h2>Recent notes</h2>
-    <ul class="post-list">
+    <h2 class="section-label">Recent notes</h2>
+    <ul class="thread-list">
       {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
       {% for post in sorted_posts limit: 5 %}
-      <li class="post-item">
-        <h3 class="post-item-title">
-          <a href="{{ post.url }}">{{ post.title }}</a>
+      <li class="thread-item reveal" style="--reveal-delay: {{ forloop.index0 | times: 0.08 }}s">
+        <span class="thread-item-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+        <h3 class="thread-item-title">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
         </h3>
-        <div class="post-item-meta">{{ post.date | date: "%B %-d, %Y" }}</div>
         {% if post.description %}
-        <p class="post-item-excerpt">{{ post.description }}</p>
+        <p class="thread-item-excerpt">{{ post.description }}</p>
         {% elsif post.excerpt %}
-        <p class="post-item-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+        <p class="thread-item-excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</p>
         {% endif %}
       </li>
       {% endfor %}
     </ul>
-    <p style="margin-top: 1.5rem;"><a href="{{ '/blog/' | relative_url }}">All notes &#8594;</a></p>
+    <p class="all-notes-link"><a href="{{ '/blog/' | relative_url }}">All notes &#8594;</a></p>
   </section>
 </div>

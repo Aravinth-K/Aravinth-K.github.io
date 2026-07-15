@@ -11,7 +11,7 @@ series_order: 1
 
 A fluctuating 2D surface driven by superposed sinusoidal modes. Drag to rotate.
 
-<div id="random-surface" style="width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid #E0DED8; margin: 2rem 0;"></div>
+<div id="random-surface" style="width: 100%; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); margin: 2rem 0;"></div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

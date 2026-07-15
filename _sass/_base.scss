@@ -5,170 +5,276 @@
 }
 
 html {
-  font-size: 17px;
-  scroll-behavior: smooth;
+  font-size: clamp(16.5px, 16px + 0.25vw, 18px);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   font-family: $font-body;
-  color: $text-primary;
-  background-color: $bg-primary;
-  line-height: 1.7;
+  font-optical-sizing: auto;
+  color: $ink;
+  line-height: 1.75;
   min-height: 100vh;
+  transition: background-color 0.35s ease, color 0.35s ease;
+
+  // Paper with its grain baked into the scrolling layer — a
+  // fixed overlay here is prohibitively expensive to composite.
+  background-color: $paper;
+  background-image: var(--grain);
+  background-size: 160px 160px;
 }
+
+// Skip link — stitched, hidden until focused
+.skip-link {
+  position: fixed;
+  top: 0.6rem;
+  left: 0.6rem;
+  z-index: 3000;
+  padding: 0.4rem 0.9rem;
+  background: $paper-high;
+  border: 1px dashed $thread;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  transform: translateY(-300%);
+
+  &:focus {
+    transform: none;
+  }
+}
+
+// ── Type ────────────────────────────────────────────────────
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-display;
+  font-optical-sizing: auto;
+  font-weight: 480;
+  line-height: 1.22;
+  letter-spacing: -0.012em;
+  margin-top: 2.2rem;
+  margin-bottom: 0.8rem;
+  color: $ink;
+}
+
+h1 { font-size: 2.4rem; font-weight: 440; }
+h2 { font-size: 1.65rem; }
+h3 { font-size: 1.3rem; }
+h4 { font-size: 1.05rem; font-weight: 560; }
+
+p {
+  margin-bottom: 1.3rem;
+}
+
+strong { font-weight: 640; }
+
+// Small-caps utility label — dates, eyebrows, metadata
+.smallcaps,
+%smallcaps {
+  font-family: $font-body;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $ink-faint;
+}
+
+// ── Links ───────────────────────────────────────────────────
+// Prose links: quiet persistent underline that warms on hover.
+// UI links (nav, pills): the thread draws itself on hover.
 
 a {
   color: $accent;
-  text-decoration: none;
-  position: relative;
-  transition: color 0.3s;
-
-  &::after {
-    // Elegant pulling/stretching thread underline
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 1.5px;
-    bottom: -2px;
-    left: 0;
-    background-color: $accent;
-    transform-origin: bottom right;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 4px $glow-shadow;
-  }
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--thread) 42%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: color 0.25s ease, text-decoration-color 0.25s ease;
 
   &:hover {
-    color: $accent-hover;
-    &::after {
-      transform: scaleX(1);
-      transform-origin: bottom left;
-    }
+    color: $accent-strong;
+    text-decoration-color: var(--thread);
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: $font-heading;
-  font-weight: 400;
-  line-height: 1.3;
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-  color: $text-primary;
-}
-
-h1 { font-size: 2.2rem; font-weight: 300; }
-h2 { font-size: 1.6rem; }
-h3 { font-size: 1.3rem; }
-h4 { font-size: 1.1rem; font-weight: 600; }
-
-p {
-  margin-bottom: 1.25rem;
-}
-
-blockquote {
-  // Stitched thread style
-  border-left: 2px dashed $accent;
-  padding-left: 1.25rem;
-  margin: 1.5rem 0;
-  color: $text-secondary;
-  font-style: italic;
+.thread-link {
   position: relative;
+  text-decoration: none;
 
-  // Subtle glow on the stitching
-  &::before {
+  &::after {
     content: '';
     position: absolute;
-    left: -2px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    box-shadow: 0 0 6px $glow-shadow;
-    pointer-events: none;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 1.5px;
+    background: $thread;
+    box-shadow: 0 0 6px $glow;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
+  &:hover::after,
+  &[aria-current='page']::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+}
+
+// Stitched focus ring, everywhere
+:focus-visible {
+  outline: 2px dashed $thread;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+// ── Prose furniture ─────────────────────────────────────────
+
+blockquote {
+  border-left: 2px dashed $thread;
+  padding: 0.15rem 0 0.15rem 1.3rem;
+  margin: 1.6rem 0;
+  color: $ink-soft;
+  font-style: italic;
+
+  em { font-style: normal; }
 }
 
 code {
-  font-family: $font-code;
-  font-size: 0.88em;
-  background: $code-bg;
-  padding: 0.15em 0.4em;
-  border-radius: 3px;
+  font-family: $font-mono;
+  font-size: 0.82em;
+  background: $paper-low;
+  border: 1px solid $line;
+  padding: 0.12em 0.38em;
+  border-radius: 4px;
 }
 
 pre {
-  background: $code-bg;
-  border: 1px solid $border;
-  border-radius: 6px;
-  padding: 1.25rem;
+  background: $paper-low;
+  border: 1px solid $line;
+  border-radius: 8px;
+  padding: 1.1rem 1.25rem;
   overflow-x: auto;
-  margin: 1.5rem 0;
+  margin: 1.6rem 0;
 
   code {
     background: none;
+    border: none;
     padding: 0;
-    font-size: 0.85rem;
-    line-height: 1.6;
+    font-size: 0.8rem;
+    line-height: 1.65;
   }
 }
 
 img {
   max-width: 100%;
   height: auto;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
-hr {
-  border: none;
-  height: 8px; // Height for the wavy pattern
-  background: transparent;
-  margin: 2.5rem 0;
-  position: relative;
+figure {
+  margin: 1.8rem 0;
 
-  // Wavy inline SVG thread pattern (matches $accent hex #E86A33)
-  background-image: url("data:image/svg+xml,%3Csvg width='40' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,4 Q10,8 20,4 T40,4' fill='none' stroke='%23E86A33' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: repeat-x;
-  background-position: center;
-  opacity: 0.65;
-  filter: drop-shadow(0 0 4px rgba(232, 106, 51, 0.25)); // Glow
-  transition: opacity 0.3s;
-
-  &:hover {
-    opacity: 1;
+  figcaption {
+    @extend %smallcaps;
+    letter-spacing: 0.08em;
+    text-transform: none;
+    font-size: 0.82rem;
+    font-style: italic;
+    margin-top: 0.6rem;
+    text-align: center;
   }
 }
 
+// Section break — the running stitch. The SVG is a mask, so the
+// wave picks up --thread in both themes and can glow.
+hr {
+  border: none;
+  height: 8px;
+  margin: 3rem auto;
+  width: min(220px, 60%);
+  background: $thread;
+  opacity: 0.75;
+  -webkit-mask-image: $stitch-mask;
+  mask-image: $stitch-mask;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-position: center;
+  mask-position: center;
+  filter: drop-shadow(0 0 5px $glow);
+}
+
 ul, ol {
-  padding-left: 1.5rem;
-  margin-bottom: 1.25rem;
+  padding-left: 1.4rem;
+  margin-bottom: 1.3rem;
 }
 
 li {
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
+
+  &::marker {
+    color: $thread;
+  }
 }
 
+// Editorial tables: horizontal rules only
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1.5rem 0;
+  margin: 1.8rem 0;
+  font-size: 0.92rem;
 
   th, td {
-    padding: 0.75rem 1rem;
-    border: 1px solid $border;
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px solid $line;
     text-align: left;
   }
 
   th {
-    background: $bg-secondary;
-    font-weight: 500;
+    @extend %smallcaps;
+    font-size: 0.72rem;
+    border-bottom: 1.5px solid $line-strong;
   }
 
-  tr:nth-child(even) {
-    background: $bg-secondary;
+  tr:last-child td {
+    border-bottom: 1.5px solid $line-strong;
   }
 }
 
 ::selection {
-  background: rgba($accent, 0.15);
+  background: var(--selection);
+}
+
+// MathJax display equations shouldn't force page overflow
+mjx-container[display='true'] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  padding: 2px 0;
+}
+
+// ── Entrance reveals ────────────────────────────────────────
+// Elements stitched into view on load / scroll. JS adds .is-in;
+// without JS everything stays visible.
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0s);
+
+    &.is-in {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

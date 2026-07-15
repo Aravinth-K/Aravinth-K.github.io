@@ -1,46 +1,45 @@
 .library-grid {
   display: grid;
-  gap: 1.25rem;
+  gap: 1rem;
+  margin-top: 2rem;
 
   .library-item {
     display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.25rem;
-    background: white;
-    border: 1px solid $border;
-    border-radius: 8px;
-    transition: box-shadow 0.2s;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 1.1rem 1.3rem;
+    background: $paper-high;
+    border: 1px solid $line;
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease,
+                transform 0.3s ease;
 
     &:hover {
-      box-shadow: 0 2px 12px $shadow;
+      border-color: $thread;
+      box-shadow: var(--shadow-lift), 0 0 14px $glow;
+      transform: translateY(-2px);
     }
 
     .library-icon {
-      width: 40px;
-      height: 48px;
-      background: $accent;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
       flex-shrink: 0;
+      color: $thread;
+      filter: drop-shadow(0 0 4px $glow);
     }
 
     .library-info {
       flex: 1;
+      min-width: 0;
 
       .library-title {
-        font-family: $font-heading;
-        font-size: 1.1rem;
-        margin-bottom: 0.25rem;
+        font-family: $font-display;
+        font-size: 1.08rem;
+        font-weight: 480;
+        margin: 0;
 
         a {
-          color: $text-primary;
+          color: $ink;
+          text-decoration: none;
 
           &:hover {
             color: $accent;
@@ -48,17 +47,16 @@
         }
       }
 
-      .library-description {
-        font-size: 0.88rem;
-        color: $text-secondary;
-        line-height: 1.5;
-      }
-
       .library-meta {
-        font-size: 0.8rem;
-        color: $text-muted;
-        margin-top: 0.35rem;
+        @extend %smallcaps;
+        margin-top: 0.2rem;
       }
     }
   }
+}
+
+.library-empty {
+  color: $ink-faint;
+  font-style: italic;
+  margin-top: 2rem;
 }

@@ -3,15 +3,16 @@ layout: page
 title: Series
 permalink: /series/
 series_graph: true
+description: Posts organised into coherent sequences
 ---
 
 <div class="series-page">
-  <p>Posts organised into coherent sequences, visualised as spanning trees.</p>
+  <p class="series-intro">Some ideas want more than one note. A series threads posts into order — follow a branch, or start at the root.</p>
 
   {% assign all_series = site.posts | map: "series" | compact | uniq %}
 
   {% for series_name in all_series %}
-  <div class="series-section">
+  <section class="series-section">
     <h2>{{ series_name }}</h2>
 
     <div id="tree-{{ series_name | slugify }}" class="series-tree-container"></div>
@@ -22,34 +23,35 @@ series_graph: true
     document.addEventListener('DOMContentLoaded', function() {
       renderSeriesTree('tree-{{ series_name | slugify }}', {
         nodes: [
-          { id: "root", name: "{{ series_name }}", parent: null }{% for post in series_posts %},
+          { id: "root", name: "{{ series_name | escape }}", parent: null }{% for post in series_posts %},
           {
             id: "{{ post.slug }}",
             name: "{{ post.title | escape }}",
             parent: "{% if post.series_parent %}{{ post.series_parent }}{% else %}root{% endif %}",
-            url: "{{ post.url }}"
+            url: "{{ post.url | relative_url }}"
           }{% endfor %}
         ]
       });
     });
     </script>
 
-    <ul class="post-list" style="margin-top: 1rem;">
+    <ul class="thread-list compact">
       {% for post in series_posts %}
-      <li class="post-item" style="padding: 0.6rem 0; border: none;">
-        <h4 class="post-item-title" style="font-size: 1.05rem; margin-top: 0;">
-          <a href="{{ post.url }}">{{ post.series_order }}. {{ post.title }}</a>
-        </h4>
+      <li class="thread-item">
+        <span class="thread-item-date">Part {{ post.series_order }}</span>
+        <h3 class="thread-item-title">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h3>
         {% if post.description %}
-        <p class="post-item-excerpt">{{ post.description }}</p>
+        <p class="thread-item-excerpt">{{ post.description }}</p>
         {% endif %}
       </li>
       {% endfor %}
     </ul>
-  </div>
+  </section>
   {% endfor %}
 
   {% if all_series.size == 0 %}
-  <p style="color: #8A8A8A; margin-top: 2rem;">No series yet. Add <code>series: "Series Name"</code> and <code>series_order: 1</code> to a post's front matter to start one.</p>
+  <p class="series-empty">No series yet — the first thread is still on the spool.</p>
   {% endif %}
 </div>

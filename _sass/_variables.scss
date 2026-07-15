@@ -1,35 +1,167 @@
-// Colors — Warm Cream & Luminous Threads
-$bg-primary: #FCFAF5; // Creamier warm light
-$bg-secondary: #F6F3ED;
-$bg-tertiary: #EFEBE3;
-$text-primary: #332E2A; // Warmer dark grey
-$text-secondary: #6B625A;
-$text-muted: #A39A8F;
-$accent: #E86A33; // Vibrant glowing coral/orange thread
-$accent-light: #FFA682; // Lighter glow
-$accent-hover: #C94C16; // Deeper tension
-$highlight: #2A9D8F; // Contrasting teal
-$border: #E8E5DD;
-$code-bg: #F6F3ED;
-$shadow: rgba(0, 0, 0, 0.05);
-$glow-shadow: rgba(232, 106, 51, 0.25); // Warm luminous shadow
+// ── Design tokens ───────────────────────────────────────────
+// Two moods of the same room:
+//   light — warm paper by daylight
+//   dark  — the same desk by lamplight, threads luminous
+// Components consume the CSS custom properties; the SCSS
+// aliases below exist so partials read naturally.
 
-// Spool pane depth colors
-$spool-bg-0: #FFFFFF;
-$spool-bg-1: #FCFAF5;
-$spool-bg-2: #F8F5EE;
-$spool-bg-3: #F6F3ED;
+:root {
+  // Paper
+  --paper: #FBF7EF;
+  --paper-high: #FFFDF8; // raised (cards, panes)
+  --paper-low: #F3EDDF;  // recessed (code, wells)
+  --paper-deep: #ECE3D0;
 
-// Typography
-$font-heading: 'Crimson Pro', Georgia, serif;
-$font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-$font-code: 'Fira Code', 'Consolas', monospace;
+  // Ink
+  --ink: #2E2823;
+  --ink-soft: #6C6155;
+  --ink-faint: #A29585;
 
-// Sizes
-$content-width: 720px;
-$content-width-wide: 960px;
-$header-height: 60px;
+  // Thread (ember)
+  --accent: #B04918;        // text-safe links & UI
+  --accent-strong: #93390F; // hover ink
+  --thread: #D4622B;        // decorative strokes
+  --thread-bright: #F08A55; // highlights on strokes
+  --thread-tint: rgba(212, 98, 43, 0.08);
+  --thread-tint-strong: rgba(212, 98, 43, 0.16);
+  --glow: rgba(212, 98, 43, 0.22);
+  --glow-strong: rgba(212, 98, 43, 0.38);
+
+  // Counterpoint (spruce)
+  --teal: #227E72;
+  --teal-bright: #2A9D8F;
+
+  // Lines & veils
+  --line: #E7DECF;
+  --line-strong: #D6C9B2;
+  --header-veil: rgba(251, 247, 239, 0.88);
+  --selection: rgba(212, 98, 43, 0.18);
+  --shadow-soft: 0 2px 14px rgba(62, 44, 24, 0.06);
+  --shadow-lift: 0 6px 24px rgba(62, 44, 24, 0.09);
+
+  // Grain — dark tooth pressed into light paper
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  // Syntax (rouge)
+  --syn-comment: #A29585;
+  --syn-keyword: #B04918;
+  --syn-string: #227E72;
+  --syn-number: #9C6D1E;
+  --syn-function: #58619B;
+  --syn-punct: #2E2823;
+}
+
+:root[data-theme='dark'] {
+  --paper: #171210;
+  --paper-high: #201915;
+  --paper-low: #100C0A;
+  --paper-deep: #0B0807;
+
+  --ink: #ECE1CE;
+  --ink-soft: #B1A38F;
+  --ink-faint: #7D7161;
+
+  --accent: #FF9757;
+  --accent-strong: #FFB185;
+  --thread: #F07B3C;
+  --thread-bright: #FFB185;
+  --thread-tint: rgba(240, 123, 60, 0.10);
+  --thread-tint-strong: rgba(240, 123, 60, 0.2);
+  --glow: rgba(240, 123, 60, 0.3);
+  --glow-strong: rgba(240, 123, 60, 0.5);
+
+  --teal: #55C4B4;
+  --teal-bright: #6FDCCC;
+
+  --line: #322A22;
+  --line-strong: #483B2D;
+  --header-veil: rgba(23, 18, 16, 0.85);
+  --selection: rgba(240, 123, 60, 0.28);
+  --shadow-soft: 0 2px 14px rgba(0, 0, 0, 0.35);
+  --shadow-lift: 0 8px 28px rgba(0, 0, 0, 0.5);
+
+  // light tooth on dark paper
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.038 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  --syn-comment: #7D7161;
+  --syn-keyword: #FF9757;
+  --syn-string: #55C4B4;
+  --syn-number: #D9A45B;
+  --syn-function: #8FA8D9;
+  --syn-punct: #ECE1CE;
+}
+
+// No-JS fallback: honour the OS preference before the boot
+// script has a chance to stamp data-theme.
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --paper: #171210;
+    --paper-high: #201915;
+    --paper-low: #100C0A;
+    --paper-deep: #0B0807;
+    --ink: #ECE1CE;
+    --ink-soft: #B1A38F;
+    --ink-faint: #7D7161;
+    --accent: #FF9757;
+    --accent-strong: #FFB185;
+    --thread: #F07B3C;
+    --thread-bright: #FFB185;
+    --thread-tint: rgba(240, 123, 60, 0.10);
+    --thread-tint-strong: rgba(240, 123, 60, 0.2);
+    --glow: rgba(240, 123, 60, 0.3);
+    --glow-strong: rgba(240, 123, 60, 0.5);
+    --teal: #55C4B4;
+    --teal-bright: #6FDCCC;
+    --line: #322A22;
+    --line-strong: #483B2D;
+    --header-veil: rgba(23, 18, 16, 0.85);
+    --selection: rgba(240, 123, 60, 0.28);
+    --shadow-soft: 0 2px 14px rgba(0, 0, 0, 0.35);
+    --shadow-lift: 0 8px 28px rgba(0, 0, 0, 0.5);
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.038 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    --syn-comment: #7D7161;
+    --syn-keyword: #FF9757;
+    --syn-string: #55C4B4;
+    --syn-number: #D9A45B;
+    --syn-function: #8FA8D9;
+    --syn-punct: #ECE1CE;
+  }
+}
+
+// ── SCSS aliases ────────────────────────────────────────────
+$paper: var(--paper);
+$paper-high: var(--paper-high);
+$paper-low: var(--paper-low);
+$paper-deep: var(--paper-deep);
+$ink: var(--ink);
+$ink-soft: var(--ink-soft);
+$ink-faint: var(--ink-faint);
+$accent: var(--accent);
+$accent-strong: var(--accent-strong);
+$thread: var(--thread);
+$thread-bright: var(--thread-bright);
+$thread-tint: var(--thread-tint);
+$thread-tint-strong: var(--thread-tint-strong);
+$glow: var(--glow);
+$glow-strong: var(--glow-strong);
+$teal: var(--teal);
+$line: var(--line);
+$line-strong: var(--line-strong);
+
+// Type
+$font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+$font-body: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+$font-mono: 'IBM Plex Mono', 'Menlo', 'Consolas', monospace;
+
+// Metrics
+$content-width: 42rem;
+$content-width-wide: 56rem;
+$header-height: 3.75rem;
 
 // Breakpoints
 $bp-mobile: 640px;
 $bp-tablet: 900px;
+
+// The stitch — a wavy running thread, used as a mask so it
+// takes colour from currentColor/background of the host.
+$stitch-mask: url("data:image/svg+xml,%3Csvg width='40' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,4 Q10,8 20,4 T40,4' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");

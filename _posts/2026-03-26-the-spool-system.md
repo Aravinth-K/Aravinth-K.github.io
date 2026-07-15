@@ -6,7 +6,7 @@ description: Collapsible detail panes for progressive disclosure
 tags: [meta, tutorial]
 ---
 
-This site has a system for progressive disclosure. Click on a spool to expand details in a sliding pane from the right. Nest them for deeper levels of detail.
+This site has a system for progressive disclosure. Click a spool and the page splits: the detail unspools into its own pane, joined to the text by a thread. Nest them for deeper levels of detail.
 
 ## A simple example
 
@@ -17,7 +17,7 @@ Consider the statement: every continuous function on a closed interval is bounde
 
 Suppose $f: [a, b] \to \mathbb{R}$ is continuous. Assume for contradiction that $f$ is unbounded.
 
-Then for each $n \in \mathbb{N}$, there exists $x_n \in [a, b]$ such that $|f(x_n)| > n$.
+Then for each $n \in \mathbb{N}$, there exists $x_n \in [a, b]$ such that $\lvert f(x_n) \rvert > n$.
 
 By Bolzano--Weierstrass, $(x_n)$ has a convergent subsequence $x_{n_k} \to c \in [a, b]$.
 
@@ -39,7 +39,7 @@ The nested closed intervals $[a_1, b_1] \supset [a_2, b_2] \supset \cdots$ have 
 </div>
 </div>
 
-Since $f$ is continuous at $c$, we have $f(x_{n_k}) \to f(c)$, so $(f(x_{n_k}))$ is bounded — contradicting $|f(x_{n_k})| > n_k \to \infty$. $\square$
+Since $f$ is continuous at $c$, we have $f(x_{n_k}) \to f(c)$, so $(f(x_{n_k}))$ is bounded — contradicting $\lvert f(x_{n_k}) \rvert > n_k \to \infty$. $\square$
 
 </div>
 </div>
@@ -60,4 +60,4 @@ You can nest another spool inside for deeper detail.
 </div>
 ```
 
-Each expansion slides a new pane in from the right. The depth colours subtly shift so you can sense how deep you are. Press Escape or click outside to close.
+On a wide screen each expansion splits the page and unspools a new pane to the right, joined to its trigger by a thread; on a phone the detail unfolds inline beneath the trigger instead. Press Escape to wind the deepest pane back in.

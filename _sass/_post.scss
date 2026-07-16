@@ -56,11 +56,12 @@
   h2 {
     margin-top: 3.2rem;
 
-    // A short stitch introduces each section
+    // A run of stitches introduces each section — three full
+    // waves, so the thread never ends mid-curve
     &::before {
       content: '';
       display: block;
-      width: 58px;
+      width: 120px;
       height: 8px;
       margin-bottom: 1.1rem;
       background: $thread;

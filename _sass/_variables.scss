@@ -5,8 +5,14 @@
 // what is shared by every palette: the paper grain, shadows, and
 // the SCSS aliases the components read.
 
-// Theme-level tokens (palette-independent)
+// Theme-level tokens (palette-independent). Fonts are custom
+// properties so a palette may override them (e.g. Lab swaps the
+// display face for a grotesque); these are the defaults.
 :root {
+  --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --font-body: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', 'Menlo', 'Consolas', monospace;
+
   // dark tooth pressed into light paper
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
   --shadow-soft: 0 2px 14px rgba(40, 32, 20, 0.06);
@@ -49,9 +55,9 @@ $line: var(--line);
 $line-strong: var(--line-strong);
 
 // Type
-$font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
-$font-body: 'Newsreader', 'Iowan Old Style', Georgia, serif;
-$font-mono: 'IBM Plex Mono', 'Menlo', 'Consolas', monospace;
+$font-display: var(--font-display);
+$font-body: var(--font-body);
+$font-mono: var(--font-mono);
 
 // Metrics
 $content-width: 42rem;

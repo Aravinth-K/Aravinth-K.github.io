@@ -34,7 +34,8 @@
 {% for palette in site.data.palettes %}
 :root[data-palette='{{ palette.name }}'] {
 {% for token in palette.light %}  --{{ token[0] }}: {{ token[1] }};
-{% endfor %}}
+{% endfor %}{% if palette.fonts %}{% for f in palette.fonts %}  --font-{{ f[0] }}: {{ f[1] }};
+{% endfor %}{% endif %}}
 
 :root[data-palette='{{ palette.name }}'][data-theme='dark'] {
 {% for token in palette.dark %}  --{{ token[0] }}: {{ token[1] }};

@@ -192,7 +192,7 @@ hr {
   border: none;
   height: 8px;
   margin: 3rem auto;
-  width: min(220px, 60%);
+  width: min(200px, 60%); // five whole waves
   background: $thread;
   opacity: 0.75;
   -webkit-mask-image: $stitch-mask;

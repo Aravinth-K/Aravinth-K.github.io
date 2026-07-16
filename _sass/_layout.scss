@@ -20,24 +20,8 @@
 
 .section-label {
   @extend %smallcaps;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
+  display: block;
   margin-bottom: 1.6rem;
-
-  &::before {
-    content: '';
-    width: 26px;
-    height: 8px;
-    background: $thread;
-    -webkit-mask-image: $stitch-mask;
-    mask-image: $stitch-mask;
-    -webkit-mask-repeat: repeat-x;
-    mask-repeat: repeat-x;
-    -webkit-mask-position: left center;
-    mask-position: left center;
-    opacity: 0.9;
-  }
 }
 
 .recent-posts {

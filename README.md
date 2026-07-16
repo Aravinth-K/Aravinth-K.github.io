@@ -175,7 +175,7 @@ The site has light ("warm paper") and dark ("lamplight") themes, and a set of sw
 
 Current palettes: **Ember** (warm cream & coral thread), **Indigo** (cool bone & ultramarine, copper counterpoint), **Moss** (sage & fern, madder counterpoint), **Mulberry** (blush & orchid, teal counterpoint), **Kappa** (research-plot steel blue and navy printed on warm ivory, green counterpoint, crimson selection — drawn from `returns_kv0.5.png`), **Lab** (after Thinking Machines Lab: pure-white monochrome memo, grotesque headings, grey underlined links), **Log** (after Lil'Log: white page, quiet greys, one brick-coral accent), **Sumi** (monochrome ink with a vermilion seal).
 
-A palette may also override the typefaces with an optional `fonts:` key (Lab does this, swapping the display serif for Archivo); faces it names must be loaded in `_includes/head.html`.
+A palette may also override the typefaces with an optional `fonts:` key — Lab swaps the display serif for Archivo, and Kappa and Log use Lato headings (chosen over its sibling Carlito, whose Calibri softness read as anonymous at display sizes). Faces a palette names must be loaded in `_includes/head.html`.
 
 ## Customising
 

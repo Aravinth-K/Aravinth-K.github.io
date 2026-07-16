@@ -252,6 +252,8 @@
 # if printed in a book: warm ivory stock, the triad kept to the ink.
 - name: kappa
   label: Kappa
+  fonts:
+    display: "'Lato', 'Helvetica Neue', Arial, sans-serif"
   light:
     paper: "#F8F6F0"
     paper-high: "#FDFCF8"
@@ -375,6 +377,8 @@
 # greys, one warm brick-coral accent, nothing else raising its voice.
 - name: log
   label: Log
+  fonts:
+    display: "'Lato', 'Helvetica Neue', Arial, sans-serif"
   light:
     paper: "#FFFFFF"
     paper-high: "#FFFFFF"

@@ -81,7 +81,8 @@
   box-shadow: -6px 0 12px -8px $glow;
   font-size: 0.96rem;
 
-  // knot where the thread meets the trigger above
+  // knot where the thread meets the trigger above — tied in the
+  // counterpoint colour, like a marker knot in different thread
   &::before {
     content: '';
     position: absolute;
@@ -91,8 +92,8 @@
     height: 9px;
     border-radius: 50%;
     background: $paper;
-    border: 1.5px solid $thread;
-    box-shadow: 0 0 6px $glow;
+    border: 1.5px solid var(--counter);
+    box-shadow: 0 0 6px color-mix(in srgb, var(--counter) 28%, transparent);
   }
 
   p:last-child {

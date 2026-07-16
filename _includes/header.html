@@ -18,6 +18,7 @@
         <a class="thread-link" href="{{ '/library/' | relative_url }}">Library</a>
         <a class="thread-link" href="{{ '/about/' | relative_url }}">About</a>
       </div>
+      {% if site.show_palette_picker %}
       <div class="palette-picker">
         <button class="palette-toggle" type="button" aria-label="Choose colour palette"
                 aria-haspopup="true" aria-expanded="false">
@@ -42,6 +43,7 @@
           {% endfor %}
         </div>
       </div>
+      {% endif %}
       <button class="theme-toggle" type="button" aria-label="Toggle light and dark theme">
         <svg class="icon-sun" viewBox="0 0 16 16" aria-hidden="true">
           <circle cx="8" cy="8" r="3.2" stroke="currentColor" stroke-width="1.3" fill="none"/>

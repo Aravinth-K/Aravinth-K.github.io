@@ -54,3 +54,10 @@ enable_math: true
 # removes the nav link and the series banner on posts. The /series/
 # page still builds, just unadvertised. Flip to true to bring it back.
 show_series: false
+
+# Hide the palette picker: everyone gets the default palette (the
+# first entry in _data/palettes.yml) and stored preferences are
+# ignored while hidden. The system stays intact — ?palette=name
+# still works for a single page load, and flipping this to true
+# brings the picker back.
+show_palette_picker: false

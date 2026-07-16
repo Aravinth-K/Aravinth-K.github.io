@@ -170,7 +170,8 @@ The site has light ("warm paper") and dark ("lamplight") themes, and a set of sw
 - **Try a palette**: use the picker in the header, or open any page with `?palette=indigo` (etc.) — handy for comparing side by side in two windows.
 - **Add a palette**: copy an existing entry in `_data/palettes.yml`, rename it, change the values. It appears in the picker automatically.
 - **Retire a palette**: delete its entry. (Visitors who had it stored fall back to the default.)
-- **Choose the winner**: move it to the top of the file — the first entry is the site default, used before JavaScript runs and for the no-JS dark fallback.
+- **Choose the winner**: move it to the top of the file — the first entry is the site default, used before JavaScript runs and for the no-JS dark fallback. (Current winner: **Deep Sans**.)
+- **Hide the picker**: `show_palette_picker: false` in `_config.yml` (currently off). Everyone gets the default palette and stored choices are ignored; `?palette=name` still previews one for a single page load. Flip to true to bring the picker back.
 - Palette-independent details (paper grain, shadows) live in `_sass/_variables.scss`.
 
 Current palettes: **Ember** (warm cream & coral thread), **Indigo** (cool bone & ultramarine, copper counterpoint), **Moss** (sage & fern, madder counterpoint), **Mulberry** (blush & orchid, teal counterpoint), **Kappa** (research-plot steel blue and navy printed on warm ivory, green counterpoint, crimson selection — drawn from `returns_kv0.5.png`), **Deep** (the same figure's full triad on true white: crimson links, steel-blue threads, green surface), **Deep Sans** (Deep with Lato for body text too — colours aliased from Deep so they never drift), **Lab** (after Thinking Machines Lab: pure-white monochrome memo, grotesque headings, grey underlined links), **Log** (after Lil'Log: white page, quiet greys, one brick-coral accent), **Sumi** (monochrome ink with a vermilion seal).

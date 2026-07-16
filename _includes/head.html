@@ -17,6 +17,7 @@
     (function () {
       var PAPER = { {% for p in site.data.palettes %}'{{ p.name }}': ['{{ p.light.paper }}', '{{ p.dark.paper }}']{% unless forloop.last %}, {% endunless %}{% endfor %} };
       {% assign first_palette = site.data.palettes | first %}var DEFAULT_PALETTE = '{{ first_palette.name }}';
+      var PICKER_ON = {% if site.show_palette_picker %}true{% else %}false{% endif %};
 
       var t;
       try { t = localStorage.getItem('theme'); } catch (e) { /* ignore */ }
@@ -25,14 +26,18 @@
           ? 'dark' : 'light';
       }
 
+      // With the picker hidden, everyone gets the default palette;
+      // ?palette=name still previews one for a single page load.
       var p = null;
       try { p = new URLSearchParams(window.location.search).get('palette'); } catch (e) { /* ignore */ }
       if (p && PAPER[p]) {
-        try { localStorage.setItem('palette', p); } catch (e) { /* ignore */ }
+        if (PICKER_ON) {
+          try { localStorage.setItem('palette', p); } catch (e) { /* ignore */ }
+        }
       } else {
         p = null;
       }
-      if (!p) {
+      if (!p && PICKER_ON) {
         try { p = localStorage.getItem('palette'); } catch (e) { /* ignore */ }
       }
       if (!p || !PAPER[p]) p = DEFAULT_PALETTE;

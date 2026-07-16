@@ -247,6 +247,70 @@
     syn-function: "#9BA8E8"
     syn-punct: "#ECE0E4"
 
+# Also from returns_kv0.5.png, but the whole triad on true white:
+# crimson takes the links and triggers, steel blue keeps the threads
+# and stitches, green keeps the surface — every series colour of the
+# figure has a visible job. Named for seaborn's "deep" palette,
+# which those plot colours come from.
+- name: deep
+  label: Deep
+  fonts:
+    display: "'Lato', 'Helvetica Neue', Arial, sans-serif"
+  light:
+    paper: "#FFFFFF"
+    paper-high: "#FFFFFF"
+    paper-low: "#F4F5F7"
+    paper-deep: "#E9EBEF"
+    ink: "#24314E"
+    ink-soft: "#55617A"
+    ink-faint: "#8C95A6"
+    accent: "#A84448"
+    accent-strong: "#8A3236"
+    thread: "#4C72B0"
+    thread-bright: "#7FA1D9"
+    thread-tint: "rgba(76, 114, 176, 0.07)"
+    thread-tint-strong: "rgba(76, 114, 176, 0.14)"
+    glow: "rgba(76, 114, 176, 0.18)"
+    glow-strong: "rgba(76, 114, 176, 0.32)"
+    counter: "#2F8C4A"
+    line: "#E3E5E9"
+    line-strong: "#CBCFD6"
+    header-veil: "rgba(255, 255, 255, 0.88)"
+    selection: "rgba(76, 114, 176, 0.15)"
+    syn-comment: "#8C95A6"
+    syn-keyword: "#3E5C9A"
+    syn-string: "#2E7D43"
+    syn-number: "#A84448"
+    syn-function: "#45577E"
+    syn-punct: "#24314E"
+  dark:
+    paper: "#14161A"
+    paper-high: "#1C1F25"
+    paper-low: "#0E1013"
+    paper-deep: "#090A0C"
+    ink: "#DFE3EB"
+    ink-soft: "#9DA6B6"
+    ink-faint: "#6A7383"
+    accent: "#E88A8D"
+    accent-strong: "#F2AEB0"
+    thread: "#6E93DD"
+    thread-bright: "#A0BCF0"
+    thread-tint: "rgba(110, 147, 221, 0.11)"
+    thread-tint-strong: "rgba(110, 147, 221, 0.20)"
+    glow: "rgba(110, 147, 221, 0.26)"
+    glow-strong: "rgba(110, 147, 221, 0.42)"
+    counter: "#52B873"
+    line: "#242830"
+    line-strong: "#363C47"
+    header-veil: "rgba(20, 22, 26, 0.85)"
+    selection: "rgba(110, 147, 221, 0.28)"
+    syn-comment: "#6A7383"
+    syn-keyword: "#85A9E8"
+    syn-string: "#63C888"
+    syn-number: "#E88A8D"
+    syn-function: "#A9B7D9"
+    syn-punct: "#DFE3EB"
+
 # Drawn from returns_kv0.5.png — seaborn research-plot colours
 # (steel-blue curves, navy titles, crimson + green series), set as
 # if printed in a book: warm ivory stock, the triad kept to the ink.

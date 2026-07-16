@@ -247,19 +247,19 @@
     syn-function: "#9BA8E8"
     syn-punct: "#ECE0E4"
 
-# Drawn from returns_kv0.5.png — seaborn research-plot colours:
-# steel-blue curves, navy titles, crimson + green series, pale
-# confidence washes, blue-grey gridlines.
+# Drawn from returns_kv0.5.png — seaborn research-plot colours
+# (steel-blue curves, navy titles, crimson + green series), set as
+# if printed in a book: warm ivory stock, the triad kept to the ink.
 - name: kappa
   label: Kappa
   light:
-    paper: "#FAFBFD"
-    paper-high: "#FFFFFF"
-    paper-low: "#EDF2F9"
-    paper-deep: "#E1E9F4"
-    ink: "#212F4D"
-    ink-soft: "#4F6079"
-    ink-faint: "#8493A9"
+    paper: "#F8F6F0"
+    paper-high: "#FDFCF8"
+    paper-low: "#ECEBE2"
+    paper-deep: "#E0DED2"
+    ink: "#24314E"
+    ink-soft: "#5A6377"
+    ink-faint: "#8E94A2"
     accent: "#375D9E"
     accent-strong: "#27406E"
     thread: "#4C72B0"
@@ -269,16 +269,16 @@
     glow: "rgba(76, 114, 176, 0.22)"
     glow-strong: "rgba(76, 114, 176, 0.38)"
     counter: "#2F8C4A"
-    line: "#D9E1EE"
-    line-strong: "#BFCCE0"
-    header-veil: "rgba(250, 251, 253, 0.88)"
+    line: "#E1DED2"
+    line-strong: "#CBC7B8"
+    header-veil: "rgba(248, 246, 240, 0.88)"
     selection: "rgba(196, 78, 82, 0.16)"
-    syn-comment: "#8493A9"
+    syn-comment: "#8E94A2"
     syn-keyword: "#375D9E"
     syn-string: "#2E7D43"
     syn-number: "#B8474E"
     syn-function: "#45577E"
-    syn-punct: "#212F4D"
+    syn-punct: "#24314E"
   dark:
     paper: "#0F1522"
     paper-high: "#171F30"

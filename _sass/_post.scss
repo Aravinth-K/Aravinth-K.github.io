@@ -80,29 +80,6 @@
   }
 }
 
-// ── Tailpiece ───────────────────────────────────────────────
-// The end of every note: the thread tied off in a knot, in the
-// counterpoint colour.
-
-.post-tailpiece {
-  margin-top: 3.2rem;
-  text-align: center;
-  color: var(--counter);
-  opacity: 0.85;
-
-  svg {
-    overflow: visible;
-  }
-
-  path {
-    stroke: currentColor;
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    fill: none;
-    filter: drop-shadow(0 0 4px color-mix(in srgb, var(--counter) 28%, transparent));
-  }
-}
-
 // ── Listings ────────────────────────────────────────────────
 // Shared entry typography; two containers use it:
 //   .note-list   — plain and quiet (home, Notes page)

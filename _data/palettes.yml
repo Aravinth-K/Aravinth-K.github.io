@@ -256,7 +256,7 @@
   label: Deep
   fonts:
     display: "'Lato', 'Helvetica Neue', Arial, sans-serif"
-  light:
+  light: &deep-light
     paper: "#FFFFFF"
     paper-high: "#FFFFFF"
     paper-low: "#F4F5F7"
@@ -283,7 +283,7 @@
     syn-number: "#A84448"
     syn-function: "#45577E"
     syn-punct: "#24314E"
-  dark:
+  dark: &deep-dark
     paper: "#14161A"
     paper-high: "#1C1F25"
     paper-low: "#0E1013"
@@ -310,6 +310,18 @@
     syn-number: "#E88A8D"
     syn-function: "#A9B7D9"
     syn-punct: "#DFE3EB"
+
+# Deep with Lato for everything, body included — one voice from
+# headings to prose (inline maths keeps MathJax's serif, which will
+# stand out slightly against a sans body). Colours are aliased from
+# Deep above, so the two can never drift apart.
+- name: deep-sans
+  label: Deep Sans
+  fonts:
+    display: "'Lato', 'Helvetica Neue', Arial, sans-serif"
+    body: "'Lato', 'Helvetica Neue', Arial, sans-serif"
+  light: *deep-light
+  dark: *deep-dark
 
 # Drawn from returns_kv0.5.png — seaborn research-plot colours
 # (steel-blue curves, navy titles, crimson + green series), set as

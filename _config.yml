@@ -49,3 +49,8 @@ defaults:
       layout: post
 
 enable_math: true
+
+# Hide the Series section until there is enough to fill it:
+# removes the nav link and the series banner on posts. The /series/
+# page still builds, just unadvertised. Flip to true to bring it back.
+show_series: false

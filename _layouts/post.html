@@ -20,7 +20,7 @@ layout: default
     {% endif %}
   </header>
 
-  {% if page.series %}
+  {% if page.series and site.show_series %}
   <aside class="series-banner">
     <span class="series-banner-label">From the series</span>
     <span class="series-name">{{ page.series }}</span>

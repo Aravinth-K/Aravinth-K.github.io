@@ -44,6 +44,9 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    // The next page this session counts as a revisit: no reveals.
+    try { sessionStorage.setItem('arrived', '1'); } catch (e) { /* ignore */ }
+
     // ── Theme toggle ────────────────────────────────────────
     var toggle = document.querySelector('.theme-toggle');
     if (toggle) {

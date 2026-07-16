@@ -269,6 +269,13 @@ mjx-container[display='true'] {
       transform: none;
     }
   }
+
+  // After the first page of a visit, everything renders settled
+  :root[data-revisit] .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

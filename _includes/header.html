@@ -12,7 +12,9 @@
     <div class="nav-right">
       <div class="nav-links">
         <a class="thread-link" href="{{ '/blog/' | relative_url }}">Notes</a>
+        {% if site.show_series %}
         <a class="thread-link" href="{{ '/series/' | relative_url }}">Series</a>
+        {% endif %}
         <a class="thread-link" href="{{ '/library/' | relative_url }}">Library</a>
         <a class="thread-link" href="{{ '/about/' | relative_url }}">About</a>
       </div>

@@ -184,6 +184,7 @@ Current palettes: **Ember** (warm cream & coral thread), **Indigo** (cool bone &
 | Typography          | `_sass/_variables.scss` (fonts load in `_includes/head.html`) |
 | Page layout, hero, footer, 404 | `_sass/_layout.scss`                |
 | Nav links           | `_includes/header.html`                        |
+| Show/hide Series    | `show_series` in `_config.yml`                 |
 | Footer text         | `_includes/footer.html`                        |
 | About page          | `_pages/about.md`                              |
 | Theme toggle, palette picker, reading progress | `assets/js/site.js` |

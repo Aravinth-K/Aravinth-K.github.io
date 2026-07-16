@@ -25,6 +25,6 @@ Collected papers, notes, and documents.
 </div>
 {% endfor %}
 {% if pdfs.size == 0 %}
-<p class="library-empty">The shelf is bare for now — the first document will appear here soon.</p>
+<p class="library-empty">Nothing here yet.</p>
 {% endif %}
 </div>

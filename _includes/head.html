@@ -41,6 +41,12 @@
       root.setAttribute('data-theme', t);
       root.setAttribute('data-palette', p);
 
+      // Entrance animations play once per visit — every page after
+      // the first renders settled.
+      try {
+        if (sessionStorage.getItem('arrived')) root.setAttribute('data-revisit', '');
+      } catch (e) { /* ignore */ }
+
       var m = document.querySelector('meta[name="theme-color"]');
       if (m && PAPER[p]) m.setAttribute('content', PAPER[p][t === 'dark' ? 1 : 0]);
     })();

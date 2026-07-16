@@ -7,6 +7,9 @@ pagination:
 ---
 
 <h1>Notes</h1>
+{% if paginator.posts.size == 0 %}
+<p class="entry-excerpt">Nothing here yet.</p>
+{% endif %}
 <ul class="note-list">
   {% for post in paginator.posts %}
   <li class="note-item reveal" style="--reveal-delay: {{ forloop.index0 | times: 0.06 }}s">

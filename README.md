@@ -14,6 +14,10 @@ Then open http://localhost:4000. Changes auto-reload.
 
 You can put those `export` lines in your `~/.zshrc` so you don't have to type them every time.
 
+## The writing reference
+
+`/writing-reference/` is an unlisted page (nothing links to it, it's not in the feed or sitemap) with a live demo of the spool system and the post syntax — open it while writing. The source is `_pages/writing-reference.md`.
+
 ## Creating a new post
 
 Create a file in `_posts/` named `YYYY-MM-DD-your-title.md`. The date and slug in the filename determine the URL.

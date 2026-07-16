@@ -1,10 +1,12 @@
 ---
-layout: post
-title: "The spool system"
-date: 2026-03-26
-description: Collapsible detail panes for progressive disclosure
-tags: [meta, tutorial]
+layout: page
+title: Writing reference
+permalink: /writing-reference/
+description: Unlisted reference for the site's post syntax
+sitemap: false
 ---
+
+*An unlisted page: nothing links here. It exists so future-me can see what the site's posts can do — spools, maths, and the rules that go with them. The full front-matter options are tabled in the README.*
 
 This site has a system for progressive disclosure. Click a spool and the detail unfolds beneath it, hanging from a knotted thread. Nest them for deeper levels of detail.
 

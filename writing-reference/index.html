@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Home — Aravinth Kulanthaivelu</title>
-  <meta name="description" content="Things I find interesting">
+  <title>Writing reference — Aravinth Kulanthaivelu</title>
+  <meta name="description" content="Unlisted reference for the site's post syntax">
   <meta name="theme-color" content="#FBF7EF">
 
-  <meta property="og:title" content="Home">
-  <meta property="og:description" content="Things I find interesting">
+  <meta property="og:title" content="Writing reference">
+  <meta property="og:description" content="Unlisted reference for the site's post syntax">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://akulanthaivelu.com/">
+  <meta property="og:url" content="https://akulanthaivelu.com/writing-reference/">
 
   <script>
     // Stamp theme and palette before first paint to avoid a flash.
@@ -108,19 +108,66 @@
 
   
   <main class="site-content" id="main">
-    <div class="home">
-  <p class="home-intro reveal">Things I find interesting.</p>
+    <article class="page">
+  <h1>Writing reference</h1>
+  <p><em>An unlisted page: nothing links here. It exists so future-me can see what the site’s posts can do — spools, maths, and the rules that go with them. The full front-matter options are tabled in the README.</em></p>
 
-  
+<p>This site has a system for progressive disclosure. Click a spool and the detail unfolds beneath it, hanging from a knotted thread. Nest them for deeper levels of detail.</p>
 
-  <section class="recent-posts">
-    <h2 class="section-label reveal">Recent notes</h2>
-    
-    
-    <p class="entry-excerpt reveal">Nothing here yet.</p>
-    
-  </section>
+<h2 id="a-simple-example">A simple example</h2>
+
+<p>Consider the statement: every continuous function on a closed interval is bounded.</p>
+
+<div class="spool" data-title="Proof (Boundedness theorem)">
+  <div class="spool-content">
+
+    <p>Suppose $f: [a, b] \to \mathbb{R}$ is continuous. Assume for contradiction that $f$ is unbounded.</p>
+
+    <p>Then for each $n \in \mathbb{N}$, there exists $x_n \in [a, b]$ such that $\lvert f(x_n) \rvert &gt; n$.</p>
+
+    <p>By Bolzano–Weierstrass, $(x_n)$ has a convergent subsequence $x_{n_k} \to c \in [a, b]$.</p>
+
+    <div class="spool" data-title="Why Bolzano–Weierstrass applies">
+      <div class="spool-content">
+
+        <p>The sequence $(x_n)$ is bounded since all terms lie in $[a, b]$. The Bolzano–Weierstrass theorem states that every bounded sequence in $\mathbb{R}^n$ has a convergent subsequence.</p>
+
+        <div class="spool" data-title="Proof of Bolzano–Weierstrass">
+          <div class="spool-content">
+
+            <p>By repeated bisection: given a bounded sequence in $[a, b]$, split the interval in half. At least one half contains infinitely many terms of the sequence. Choose that half and repeat.</p>
+
+            <p>The nested closed intervals $[a_1, b_1] \supset [a_2, b_2] \supset \cdots$ have lengths $\to 0$. By the nested interval theorem, they converge to a single point $c$. We can extract a subsequence converging to $c$.</p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <p>Since $f$ is continuous at $c$, we have $f(x_{n_k}) \to f(c)$, so $(f(x_{n_k}))$ is bounded — contradicting $\lvert f(x_{n_k}) \rvert &gt; n_k \to \infty$. $\square$</p>
+
+  </div>
 </div>
+
+<h2 id="how-to-use-spools-in-your-posts">How to use spools in your posts</h2>
+
+<p>In your markdown, write:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"spool"</span> <span class="na">data-title=</span><span class="s">"Your title here"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"spool-content"</span> <span class="na">markdown=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+
+Your detailed content here. **Markdown works** and so does $\LaTeX$.
+
+You can nest another spool inside for deeper detail.
+
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>Each spool unfolds in place beneath its trigger, hanging from a knotted thread, and reading continues undisturbed around it. Press Escape to fold the most recent spool back up.</p>
+
+</article>
 
   </main>
   <footer class="site-footer">

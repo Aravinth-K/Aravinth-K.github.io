@@ -1,1 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?> <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> <url> <loc>https://aravinth-k.github.io/</loc> </url> <url> <loc>https://aravinth-k.github.io/_pages/dropdown/</loc> </url> <url> <loc>https://aravinth-k.github.io/blog/</loc> </url> </urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://akulanthaivelu.com/about/</loc>
+</url>
+<url>
+<loc>https://akulanthaivelu.com/</loc>
+</url>
+<url>
+<loc>https://akulanthaivelu.com/library/</loc>
+</url>
+<url>
+<loc>https://akulanthaivelu.com/series/</loc>
+</url>
+<url>
+<loc>https://akulanthaivelu.com/blog/</loc>
+</url>
+</urlset>

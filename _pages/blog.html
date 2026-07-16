@@ -12,7 +12,7 @@ pagination:
   <li class="note-item reveal" style="--reveal-delay: {{ forloop.index0 | times: 0.06 }}s">
     <span class="entry-date">
       {{ post.date | date: "%B %-d, %Y" }}
-      {% if post.series %} · <span class="entry-series">{{ post.series }}</span>{% endif %}
+      {% if post.series and site.show_series %} · <span class="entry-series">{{ post.series }}</span>{% endif %}
     </span>
     <h3 class="entry-title">
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>

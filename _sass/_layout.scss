@@ -86,23 +86,22 @@
   padding: 0 1.5rem 2.5rem;
   text-align: center;
 
-  // The hem: a full running stitch across the footer, sewn in the
-  // counterpoint thread (green, on the default palette)
+  // The hem: a full running stitch across the footer
   &::before {
     content: '';
     display: block;
     width: min(560px, 90%);
     height: 8px;
     margin: 0 auto 1.8rem;
-    background: var(--counter);
+    background: $thread;
     -webkit-mask-image: $stitch-mask;
     mask-image: $stitch-mask;
     -webkit-mask-repeat: repeat-x;
     mask-repeat: repeat-x;
     -webkit-mask-position: center;
     mask-position: center;
-    opacity: 0.75;
-    filter: drop-shadow(0 0 5px color-mix(in srgb, var(--counter) 30%, transparent));
+    opacity: 0.55;
+    filter: drop-shadow(0 0 5px $glow);
   }
 
   .footer-container {

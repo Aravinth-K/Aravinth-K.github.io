@@ -71,3 +71,7 @@ $bp-tablet: 900px;
 // The stitch — a wavy running thread, used as a mask so it
 // takes colour from the host element's background.
 $stitch-mask: url("data:image/svg+xml,%3Csvg width='40' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,4 Q10,8 20,4 T40,4' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+
+// The knot — an overhand knot tied in a vertical thread, same
+// mask trick. Shared by series list markers and spool joints.
+$knot-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15'%3E%3Cpath d='M7.5 .5 C7.5 3 4.5 3.6 4.5 6.2 C4.5 9 10.5 9 10.5 6.2 C10.5 3.6 6 4.4 6 7.4 C6 10 7.5 10.6 7.5 14.5' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");

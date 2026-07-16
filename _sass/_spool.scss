@@ -81,19 +81,22 @@
   box-shadow: -6px 0 12px -8px $glow;
   font-size: 0.96rem;
 
-  // knot where the thread meets the trigger above — tied in the
-  // counterpoint colour, like a marker knot in different thread
+  // an overhand knot tied where the thread meets the trigger
+  // above — in the counterpoint colour, like a marker knot tied
+  // in different thread
   &::before {
     content: '';
     position: absolute;
-    left: -6px;
-    top: -5px;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: $paper;
-    border: 1.5px solid var(--counter);
-    box-shadow: 0 0 6px color-mix(in srgb, var(--counter) 28%, transparent);
+    left: -8px;
+    top: -8px;
+    width: 15px;
+    height: 15px;
+    background: var(--counter);
+    -webkit-mask-image: $knot-mask;
+    mask-image: $knot-mask;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    filter: drop-shadow(0 0 5px color-mix(in srgb, var(--counter) 28%, transparent));
   }
 
   p:last-child {

@@ -6,7 +6,7 @@ description: Collapsible detail panes for progressive disclosure
 tags: [meta, tutorial]
 ---
 
-This site has a system for progressive disclosure. Click a spool and the page splits: the detail unspools into its own pane, joined to the text by a thread. Nest them for deeper levels of detail.
+This site has a system for progressive disclosure. Click a spool and the detail unfolds beneath it, hanging from a knotted thread. Nest them for deeper levels of detail.
 
 ## A simple example
 
@@ -60,4 +60,4 @@ You can nest another spool inside for deeper detail.
 </div>
 ```
 
-On a wide screen each expansion splits the page and unspools a new pane to the right, joined to its trigger by a thread; on a phone the detail unfolds inline beneath the trigger instead. Press Escape to wind the deepest pane back in.
+Each spool unfolds in place beneath its trigger, hanging from a knotted thread, and reading continues undisturbed around it. Press Escape to fold the most recent spool back up.

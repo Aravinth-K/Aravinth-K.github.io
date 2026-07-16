@@ -79,10 +79,64 @@
   }
 }
 
-// ── Thread list ─────────────────────────────────────────────
-// Shared by home, blog and series: entries knotted onto one
-// vertical thread running down the left margin.
+// ── Listings ────────────────────────────────────────────────
+// Shared entry typography; two containers use it:
+//   .note-list   — plain and quiet (home, Notes page)
+//   .thread-list — entries knotted onto a vertical thread (Series)
 
+.entry-date {
+  @extend %smallcaps;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.entry-title {
+  font-family: $font-display;
+  font-size: 1.42rem;
+  font-weight: 460;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0 0 0.3rem;
+
+  a {
+    color: $ink;
+    text-decoration: none;
+    transition: color 0.25s ease;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+}
+
+.entry-excerpt {
+  color: $ink-soft;
+  font-size: 0.96rem;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 36rem;
+}
+
+.entry-series {
+  color: $accent;
+  font-style: italic;
+}
+
+// Quiet list — whitespace does the separating
+.note-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.note-item {
+  + .note-item {
+    margin-top: 2.1rem;
+  }
+}
+
+// Knotted thread list — a vertical thread with an overhand knot
+// at every entry
 .thread-list {
   list-style: none;
   padding: 0;
@@ -93,7 +147,7 @@
   &::before {
     content: '';
     position: absolute;
-    left: 5px;
+    left: 6px;
     top: 0.9rem;
     bottom: 0.4rem;
     width: 1.5px;
@@ -109,70 +163,33 @@
 
 .thread-item {
   position: relative;
-  padding: 0 0 2.1rem 2.1rem;
+  padding: 0 0 2.1rem 2.2rem;
 
   &:last-child {
     padding-bottom: 0.5rem;
   }
 
-  // the knot
+  // the knot — an overhand knot tied in the thread, colourable
+  // through a mask like the stitches
   &::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0.52rem;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: $paper;
-    border: 1.5px solid $thread;
-    box-shadow: 0 0 7px $glow;
-    transition: background-color 0.25s ease, box-shadow 0.25s ease,
-                transform 0.25s ease;
+    left: -1px;
+    top: 0.32rem;
+    width: 15px;
+    height: 15px;
+    background: $thread;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15'%3E%3Cpath d='M7.5 .5 C7.5 3 4.5 3.6 4.5 6.2 C4.5 9 10.5 9 10.5 6.2 C10.5 3.6 6 4.4 6 7.4 C6 10 7.5 10.6 7.5 14.5' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15'%3E%3Cpath d='M7.5 .5 C7.5 3 4.5 3.6 4.5 6.2 C4.5 9 10.5 9 10.5 6.2 C10.5 3.6 6 4.4 6 7.4 C6 10 7.5 10.6 7.5 14.5' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    filter: drop-shadow(0 0 5px $glow);
+    transition: filter 0.25s ease, transform 0.25s ease;
   }
 
   &:hover::before {
-    background: $thread;
-    box-shadow: 0 0 12px $glow-strong;
-    transform: scale(1.15);
-  }
-
-  .thread-item-date {
-    @extend %smallcaps;
-    display: block;
-    margin-bottom: 0.15rem;
-  }
-
-  .thread-item-title {
-    font-family: $font-display;
-    font-size: 1.42rem;
-    font-weight: 460;
-    letter-spacing: -0.01em;
-    line-height: 1.25;
-    margin: 0 0 0.3rem;
-
-    a {
-      color: $ink;
-      text-decoration: none;
-      transition: color 0.25s ease;
-
-      &:hover {
-        color: $accent;
-      }
-    }
-  }
-
-  .thread-item-excerpt {
-    color: $ink-soft;
-    font-size: 0.96rem;
-    line-height: 1.65;
-    margin: 0;
-    max-width: 36rem;
-  }
-
-  .thread-item-series {
-    color: $accent;
-    font-style: italic;
+    filter: drop-shadow(0 0 8px $glow-strong);
+    transform: scale(1.18);
   }
 }
 
@@ -180,11 +197,11 @@
 .thread-list.compact .thread-item {
   padding-bottom: 1.2rem;
 
-  .thread-item-title {
+  .entry-title {
     font-size: 1.12rem;
   }
 
-  .thread-item-excerpt {
+  .entry-excerpt {
     font-size: 0.9rem;
   }
 }

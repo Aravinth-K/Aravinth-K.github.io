@@ -269,13 +269,17 @@
   transform-origin: left center;
 }
 
+// Before the name could ever truncate, the spool glyph stands in
+// for it — an ellipsised name is worse than no name.
+@media (max-width: 820px) {
+  .site-title span.title-text {
+    display: none;
+  }
+}
+
 @media (max-width: $bp-mobile) {
   .nav-container {
     padding: 0 1rem;
-  }
-
-  .site-title span.title-text {
-    display: none; // spool glyph stands in for the name on tiny screens
   }
 
   .nav-right {

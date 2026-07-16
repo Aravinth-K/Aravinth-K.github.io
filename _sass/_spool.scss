@@ -1,8 +1,7 @@
 // ── Spool ───────────────────────────────────────────────────
-// Hidden detail wound onto a trigger. On wide screens the page
-// splits: a new pane unspools to the right, joined to its
-// trigger by a sagging thread. On small screens the detail
-// unfolds inline beneath the trigger instead.
+// Hidden detail wound onto a trigger. Clicking it unfolds the
+// detail inline beneath, hanging from a short knotted thread.
+// Spools nest for deeper levels.
 
 .spool {
   margin: 1.3rem 0;
@@ -57,185 +56,7 @@
   display: none;
 }
 
-// ── Split-page layout (wide screens) ────────────────────────
-
-.spool-page {
-  display: flex;
-  align-items: flex-start;
-  position: relative;
-  justify-content: flex-start;
-  justify-content: safe center;
-}
-
-.site-content.spool-active {
-  max-width: none;
-  overflow-x: auto;
-  padding-left: 0;
-  padding-right: 0;
-
-  &::-webkit-scrollbar {
-    height: 4px;
-  }
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: var(--thread-tint-strong);
-    border-radius: 2px;
-  }
-}
-
-.spool-col {
-  flex-shrink: 0;
-  transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-              padding 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.35s ease;
-
-  &.spool-col-main {
-    width: min(calc(#{$content-width} + 3rem), calc(100vw - 3rem));
-    padding: 0 1.5rem;
-
-    &.narrowed {
-      width: min(27rem, 46vw);
-    }
-  }
-
-  &.spool-col-child {
-    width: 0;
-    opacity: 0;
-    overflow: hidden;
-    position: relative;
-    margin-left: 30px; // the gap the thread crosses
-
-    // Vertical thread running down the pane's spine. Its top is
-    // set by JS (--thread-top) to meet the horizontal connector.
-    &::before {
-      content: '';
-      position: absolute;
-      left: -15px;
-      top: calc(var(--thread-top, 0px) + 1px);
-      width: 1.5px;
-      height: 0;
-      background: linear-gradient(
-        to bottom,
-        $thread 0%,
-        $thread 60%,
-        var(--thread-tint-strong) 100%
-      );
-      box-shadow: 0 0 6px $glow;
-      transition: height 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
-      z-index: 1;
-      opacity: 0;
-    }
-
-    &.open {
-      width: min(30rem, 46vw);
-      opacity: 1;
-      padding: 0 2rem;
-      overflow: visible;
-
-      &::before {
-        height: calc(100% - var(--thread-top, 0px) - 1px);
-        opacity: 0.8;
-      }
-    }
-
-    &.closing {
-      width: 0 !important;
-      opacity: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-  }
-}
-
-// The sagging connector between trigger and pane. JS sizes it
-// to bridge the real gap from the trigger pill to the pane.
-.spool-connector-svg-wrap {
-  position: absolute;
-  height: 26px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.spool-svg-connector {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-
-  .spool-path {
-    stroke: $thread;
-    stroke-width: 1.5px;
-    filter: drop-shadow(0 0 4px $glow);
-    stroke-dasharray: 120;
-    stroke-dashoffset: 120;
-    transition: stroke-dashoffset 0.55s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
-  }
-}
-
-.spool-col-child.open .spool-path {
-  stroke-dashoffset: 0;
-}
-
-// ── Pane innards ────────────────────────────────────────────
-
-.spool-col-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.8rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.55rem;
-  border-bottom: 1px solid $line;
-}
-
-.spool-col-title {
-  font-family: $font-display;
-  font-style: italic;
-  font-size: 1.18rem;
-  font-weight: 480;
-  color: $ink;
-  margin: 0;
-}
-
-.spool-col-close {
-  width: 24px;
-  height: 24px;
-  border: 1px dashed $line-strong;
-  background: transparent;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: $ink-faint;
-  font-size: 0.85rem;
-  line-height: 1;
-  transition: border-color 0.25s ease, color 0.25s ease,
-              transform 0.3s ease;
-  flex-shrink: 0;
-  align-self: center;
-
-  &:hover {
-    border-color: $thread;
-    border-style: solid;
-    color: $accent;
-    transform: rotate(90deg);
-  }
-}
-
-.spool-col-body {
-  line-height: 1.7;
-  font-size: 0.95rem;
-
-  p:last-child {
-    margin-bottom: 0;
-  }
-}
-
-// ── Inline mode (small screens) ─────────────────────────────
-// The pane unfolds beneath the trigger, hanging off a short
-// length of thread.
+// ── The unfolded detail ─────────────────────────────────────
 
 .spool-inline {
   display: grid;
@@ -254,11 +75,11 @@
 
 .spool-inline-body {
   position: relative;
-  margin: 0.9rem 0 0.4rem 0.55rem;
-  padding: 0.15rem 0 0.15rem 1.15rem;
+  margin: 0.9rem 0 0.4rem 0.6rem;
+  padding: 0.15rem 0 0.15rem 1.25rem;
   border-left: 1.5px solid $thread;
   box-shadow: -6px 0 12px -8px $glow;
-  font-size: 0.95rem;
+  font-size: 0.96rem;
 
   // knot where the thread meets the trigger above
   &::before {

@@ -7,20 +7,20 @@ pagination:
 ---
 
 <h1>Notes</h1>
-<ul class="thread-list">
+<ul class="note-list">
   {% for post in paginator.posts %}
-  <li class="thread-item reveal" style="--reveal-delay: {{ forloop.index0 | times: 0.06 }}s">
-    <span class="thread-item-date">
+  <li class="note-item reveal" style="--reveal-delay: {{ forloop.index0 | times: 0.06 }}s">
+    <span class="entry-date">
       {{ post.date | date: "%B %-d, %Y" }}
-      {% if post.series %} · <span class="thread-item-series">{{ post.series }}</span>{% endif %}
+      {% if post.series %} · <span class="entry-series">{{ post.series }}</span>{% endif %}
     </span>
-    <h3 class="thread-item-title">
+    <h3 class="entry-title">
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
     </h3>
     {% if post.description %}
-    <p class="thread-item-excerpt">{{ post.description }}</p>
+    <p class="entry-excerpt">{{ post.description }}</p>
     {% elsif post.excerpt %}
-    <p class="thread-item-excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</p>
+    <p class="entry-excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</p>
     {% endif %}
   </li>
   {% endfor %}

@@ -38,12 +38,12 @@ description: Posts organised into coherent sequences
     <ul class="thread-list compact">
       {% for post in series_posts %}
       <li class="thread-item">
-        <span class="thread-item-date">Part {{ post.series_order }}</span>
-        <h3 class="thread-item-title">
+        <span class="entry-date">Part {{ post.series_order }}</span>
+        <h3 class="entry-title">
           <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
         </h3>
         {% if post.description %}
-        <p class="thread-item-excerpt">{{ post.description }}</p>
+        <p class="entry-excerpt">{{ post.description }}</p>
         {% endif %}
       </li>
       {% endfor %}

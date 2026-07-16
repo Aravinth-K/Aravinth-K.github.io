@@ -72,7 +72,7 @@ For more control (sizing, captions), use raw HTML:
 
 ## Using the spool system
 
-Spools let you hide detail (proofs, derivations, tangents) behind a clickable trigger. On a wide screen the page splits and the detail unspools into a new column to the right, joined to the trigger by a thread; on small screens (phones) the detail unfolds inline beneath the trigger instead. You can nest spools for deeper levels. Escape closes the deepest pane.
+Spools let you hide detail (proofs, derivations, tangents) behind a clickable trigger. The detail unfolds inline beneath the trigger, hanging from a knotted thread, and you can nest spools for deeper levels. Escape folds the most recent spool back up.
 
 In your markdown, write:
 
@@ -173,7 +173,7 @@ The site has light ("warm paper") and dark ("lamplight") themes, and a set of sw
 - **Choose the winner**: move it to the top of the file — the first entry is the site default, used before JavaScript runs and for the no-JS dark fallback.
 - Palette-independent details (paper grain, shadows) live in `_sass/_variables.scss`.
 
-Current palettes: **Ember** (warm cream & coral thread), **Indigo** (cool bone & ultramarine, copper counterpoint), **Moss** (sage & fern, madder counterpoint), **Mulberry** (blush & orchid, teal counterpoint), **Kappa** (research-plot steel blue and navy printed on warm ivory, green counterpoint, crimson selection — drawn from `returns_kv0.5.png`), **Sumi** (monochrome ink with a vermilion seal).
+Current palettes: **Ember** (warm cream & coral thread), **Indigo** (cool bone & ultramarine, copper counterpoint), **Moss** (sage & fern, madder counterpoint), **Mulberry** (blush & orchid, teal counterpoint), **Kappa** (research-plot steel blue and navy printed on warm ivory, green counterpoint, crimson selection — drawn from `returns_kv0.5.png`), **Log** (after Lil'Log: white page, quiet greys, one brick-coral accent), **Sumi** (monochrome ink with a vermilion seal).
 
 ## Customising
 

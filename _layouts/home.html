@@ -18,18 +18,18 @@ layout: default
 
   <section class="recent-posts">
     <h2 class="section-label">Recent notes</h2>
-    <ul class="thread-list">
+    <ul class="note-list">
       {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
       {% for post in sorted_posts limit: 5 %}
-      <li class="thread-item reveal" style="--reveal-delay: {{ forloop.index0 | times: 0.08 }}s">
-        <span class="thread-item-date">{{ post.date | date: "%B %-d, %Y" }}</span>
-        <h3 class="thread-item-title">
+      <li class="note-item reveal" style="--reveal-delay: {{ forloop.index0 | times: 0.08 }}s">
+        <span class="entry-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+        <h3 class="entry-title">
           <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
         </h3>
         {% if post.description %}
-        <p class="thread-item-excerpt">{{ post.description }}</p>
+        <p class="entry-excerpt">{{ post.description }}</p>
         {% elsif post.excerpt %}
-        <p class="thread-item-excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</p>
+        <p class="entry-excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</p>
         {% endif %}
       </li>
       {% endfor %}

@@ -1,4 +1,140 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://akulanthaivelu.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://akulanthaivelu.com/" rel="alternate" type="text/html" /><updated>2026-07-30T15:54:09+00:00</updated><id>https://akulanthaivelu.com/feed.xml</id><title type="html">Aravinth Kulanthaivelu</title><subtitle>Things I find interesting</subtitle><entry><title type="html">$S$-duality of the Unflavoured Schur Index of $\mathcal N=4$ SYM</title><link href="https://akulanthaivelu.com/blog/2026/schur-index-s-duality/" rel="alternate" type="text/html" title="$S$-duality of the Unflavoured Schur Index of $\mathcal N=4$ SYM" /><published>2026-07-30T00:00:00+00:00</published><updated>2026-07-30T00:00:00+00:00</updated><id>https://akulanthaivelu.com/blog/2026/schur-index-s-duality</id><content type="html" xml:base="https://akulanthaivelu.com/blog/2026/schur-index-s-duality/"><![CDATA[<h2 id="1-introduction">1 Introduction</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>S-duality of the Unflavoured Schur Index of N=4 SYM — Aravinth Kulanthaivelu</title>
+  <meta name="description" content="A one-particle proof of an open S-duality identity — and the LLM that found it.">
+  <meta name="theme-color" content="#FBF7EF">
+
+  <meta property="og:title" content="S-duality of the Unflavoured Schur Index of N=4 SYM">
+  <meta property="og:description" content="A one-particle proof of an open S-duality identity — and the LLM that found it.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://akulanthaivelu.com/blog/2026/schur-index-s-duality/">
+
+  <script>
+    // Stamp theme and palette before first paint to avoid a flash.
+    // Palettes are defined in _data/palettes.yml; the maps below are
+    // generated from it at build time.
+    (function () {
+      var PAPER = { 'deep-sans': ['#FFFFFF', '#14161A'], 'ember': ['#FBF7EF', '#171210'], 'indigo': ['#F6F6F1', '#101318'], 'moss': ['#F7F6EC', '#121510'], 'mulberry': ['#FAF6F2', '#171114'], 'deep': ['#FFFFFF', '#14161A'], 'kappa': ['#F8F6F0', '#0F1522'], 'lab': ['#FFFFFF', '#161616'], 'log': ['#FFFFFF', '#151514'], 'sumi': ['#F8F7F3', '#131312'] };
+      var DEFAULT_PALETTE = 'deep-sans';
+      var PICKER_ON = false;
+
+      var t;
+      try { t = localStorage.getItem('theme'); } catch (e) { /* ignore */ }
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark' : 'light';
+      }
+
+      // With the picker hidden, everyone gets the default palette;
+      // ?palette=name still previews one for a single page load.
+      var p = null;
+      try { p = new URLSearchParams(window.location.search).get('palette'); } catch (e) { /* ignore */ }
+      if (p && PAPER[p]) {
+        if (PICKER_ON) {
+          try { localStorage.setItem('palette', p); } catch (e) { /* ignore */ }
+        }
+      } else {
+        p = null;
+      }
+      if (!p && PICKER_ON) {
+        try { p = localStorage.getItem('palette'); } catch (e) { /* ignore */ }
+      }
+      if (!p || !PAPER[p]) p = DEFAULT_PALETTE;
+
+      var root = document.documentElement;
+      root.setAttribute('data-theme', t);
+      root.setAttribute('data-palette', p);
+
+      // Entrance animations play once per visit — every page after
+      // the first renders settled.
+      try {
+        if (sessionStorage.getItem('arrived')) root.setAttribute('data-revisit', '');
+      } catch (e) { /* ignore */ }
+
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m && PAPER[p]) m.setAttribute('content', PAPER[p][t === 'dark' ? 1 : 0]);
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..640;1,9..144,340..640&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Archivo:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=1785426849">
+  <link rel="alternate" type="application/atom+xml" title="Aravinth Kulanthaivelu" href="/feed.xml">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 8 h18 M7 24 h18 M11 8 v16 M21 8 v16 M11 11.5 h10 M11 16 h10 M11 20.5 h10' stroke='%23D4622B' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3Cpath d='M21 24 q6 3 9 1' stroke='%23D4622B' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+  <nav class="nav-container" aria-label="Site">
+    <a href="/" class="site-title">
+      <svg class="title-spool" width="17" height="17" viewBox="0 0 17 17" aria-hidden="true">
+        <path d="M3,4.5 h11 M3,12.5 h11 M5.2,4.5 v8 M11.8,4.5 v8 M5.2,6.6 h6.6 M5.2,8.5 h6.6 M5.2,10.4 h6.6"
+              stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <path d="M11.8,12.5 q3,1.8 4.5,0.8" stroke="currentColor" stroke-width="1.4"
+              stroke-linecap="round" fill="none"/>
+      </svg>
+      <span class="title-text">Aravinth Kulanthaivelu</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a class="thread-link" href="/blog/">Notes</a>
+        
+        <a class="thread-link" href="/library/">Library</a>
+        <a class="thread-link" href="/about/">About</a>
+      </div>
+      
+      <button class="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+        <svg class="icon-sun" viewBox="0 0 16 16" aria-hidden="true">
+          <circle cx="8" cy="8" r="3.2" stroke="currentColor" stroke-width="1.3" fill="none"/>
+          <path d="M8 1.2v1.8M8 13v1.8M1.2 8h1.8M13 8h1.8M3.2 3.2l1.3 1.3M11.5 11.5l1.3 1.3M12.8 3.2l-1.3 1.3M4.5 11.5l-1.3 1.3"
+                stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M13.2 9.8A5.8 5.8 0 0 1 6.2 2.8a5.8 5.8 0 1 0 7 7z"
+                stroke="currentColor" stroke-width="1.3" stroke-linecap="round"
+                stroke-linejoin="round" fill="none"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="progress-thread" aria-hidden="true"></div>
+  
+  <main class="site-content" id="main">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title">$S$-duality of the Unflavoured Schur Index of $\mathcal N=4$ SYM</h1>
+    <div class="post-meta">
+      <time datetime="2026-07-30T00:00:00+00:00">July 30, 2026</time>
+      
+    </div>
+    
+    <div class="post-tags">
+      
+      <span class="tag">physics</span>
+      
+      <span class="tag">maths</span>
+      
+      <span class="tag">llms</span>
+      
+    </div>
+    
+  </header>
+
+  
+
+  <div class="post-content">
+    <h2 id="1-introduction">1 Introduction</h2>
 
 <p>During my DPhil I became interested in a toy problem suggested by a postdoc. The problem was loosely related to matrix models, something I had been working on up until that point.</p>
 
@@ -687,4 +823,34 @@ The most obvious next step is to consider the Schur index with flavour fugacitie
   <li><a id="ref-15"></a>D. F. Lawden, “<a href="https://doi.org/10.1007/978-1-4757-3980-0"><em>Elliptic Functions and Applications</em></a>,” Applied Mathematical Sciences, vol. 80, Springer-Verlag, New York (1989).</li>
   <li><a id="ref-16"></a>W. P. Reinhardt and P. L. Walker, “<a href="https://dlmf.nist.gov/22">Jacobian Elliptic Functions</a>,” Chapter 22 in the <em>NIST Digital Library of Mathematical Functions</em>, Release 1.2.7 (2026); see <a href="https://dlmf.nist.gov/22.11">§22.11, Fourier and Hyperbolic Series</a>.</li>
   <li><a id="ref-17"></a>H. C. Rosu, “<a href="https://arxiv.org/abs/quant-ph/9809056">Short survey of Darboux transformations</a>,” in <em>Symmetries in Quantum Mechanics and Quantum Optics</em>, F. J. Herranz, A. Ballesteros, L. M. Nieto, J. Negro, and C. M. Pereña, eds., Servicio de Publicaciones, Universidad de Burgos, pp. 301–315 (1999). <a href="https://arxiv.org/abs/quant-ph/9809056">arXiv:quant-ph/9809056</a>.</li>
-</ol>]]></content><author><name></name></author><category term="physics" /><category term="maths" /><category term="llms" /><summary type="html"><![CDATA[A one-particle proof of an open S-duality identity — and the LLM that found it.]]></summary></entry></feed>
+</ol>
+
+  </div>
+</article>
+
+  </main>
+  <footer class="site-footer">
+  <div class="footer-container">
+    <p>&copy; 2026 Aravinth Kulanthaivelu · <a href="/feed.xml">RSS</a></p>
+  </div>
+</footer>
+
+
+  <script src="/assets/js/site.js?v=1785426849"></script>
+  <script src="/assets/js/spool.js?v=1785426849"></script>
+  
+  
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+  
+</body>
+</html>

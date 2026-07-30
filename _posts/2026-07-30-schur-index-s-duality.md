@@ -493,10 +493,12 @@ $$
 The addition formulas mean we have the following nice properties
 
 $$
-\cos(2\theta)=\operatorname{cn}(2s),\quad
-\sin(2\theta)=\operatorname{sn}(2s),\quad
-\cos(2\varphi)=\operatorname{dn}(2s),\quad
-\sin(2\varphi)=k\operatorname{sn}(2s).
+\begin{aligned}
+\cos(2\theta)&=\operatorname{cn}(2s),&
+\sin(2\theta)&=\operatorname{sn}(2s),\\
+\cos(2\varphi)&=\operatorname{dn}(2s),&
+\sin(2\varphi)&=k\operatorname{sn}(2s).
+\end{aligned}
 \tag{5.15}
 $$
 

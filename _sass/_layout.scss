@@ -75,6 +75,60 @@
   }
 }
 
+// Elsewhere — the contact pills at the foot of the bio
+.elsewhere {
+  clear: both;
+  margin-top: 3.2rem;
+
+  .section-label {
+    margin-bottom: 1.1rem;
+  }
+}
+
+.elsewhere-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin: 0;
+  }
+}
+
+.elsewhere-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.05rem;
+  border: 1px dashed $line-strong;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: border-color 0.25s ease, box-shadow 0.3s ease,
+              background-color 0.25s ease;
+
+  svg {
+    display: block;
+    color: $thread;
+    flex: none;
+    transition: color 0.25s ease;
+  }
+
+  &:hover {
+    border-color: $thread;
+    border-style: solid;
+    background: $thread-tint;
+    box-shadow: 0 0 12px $glow;
+
+    svg {
+      color: $thread-bright;
+    }
+  }
+}
+
 // ── Pagination ──────────────────────────────────────────────
 
 .pagination {

@@ -48,6 +48,14 @@ defaults:
     values:
       layout: post
 
+# Contact and profile links shown on the About page ("Elsewhere").
+# Leave a value blank to hide that pill. RSS is always shown.
+contacts:
+  email: aravinth.kulanthaivelu@outlook.com
+  scholar: BGQOXTQAAAAJ                          # Google Scholar ID — the ?user= part of your profile URL
+  linkedin: aravinth-kulanthaivelu-54020aa3      # LinkedIn slug — the part after linkedin.com/in/
+  github: Aravinth-K
+
 enable_math: true
 
 # Hide the Series section until there is enough to fill it:

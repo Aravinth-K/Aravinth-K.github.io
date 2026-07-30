@@ -1,0 +1,66 @@
+{% assign c = site.contacts %}
+<section class="elsewhere" aria-label="Contact and profile links">
+  <span class="section-label">Elsewhere</span>
+  <ul class="elsewhere-links">
+    {% if c.email and c.email != "" %}
+    <li>
+      <a class="elsewhere-link" href="mailto:{{ c.email }}">
+        <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true">
+          <rect x="1.6" y="3.6" width="12.8" height="8.8" rx="1.6"
+                stroke="currentColor" stroke-width="1.4" fill="none"/>
+          <path d="M2.6 5 8 9.2 13.4 5" stroke="currentColor" stroke-width="1.4"
+                stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span>Email</span>
+      </a>
+    </li>
+    {% endif %}
+    {% if c.scholar and c.scholar != "" %}
+    <li>
+      <a class="elsewhere-link" rel="me" href="https://scholar.google.com/citations?user={{ c.scholar }}">
+        <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M8 3.1 14.8 6.3 8 9.5 1.2 6.3Z M14.8 6.3v3.1"
+                stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                stroke-linejoin="round" fill="none"/>
+          <path d="M4.4 8v2.3c0 .9 1.6 1.7 3.6 1.7s3.6-.8 3.6-1.7V8"
+                stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span>Scholar</span>
+      </a>
+    </li>
+    {% endif %}
+    {% if c.linkedin and c.linkedin != "" %}
+    <li>
+      <a class="elsewhere-link" rel="me" href="https://www.linkedin.com/in/{{ c.linkedin }}/">
+        <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M4.6 7.2v4.4 M4.6 4.5v.01 M7.9 11.6V7.2 M7.9 9.1c0-1.15.95-2.05 2.1-2.05s2.1.9 2.1 2.05v2.5"
+                stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span>LinkedIn</span>
+      </a>
+    </li>
+    {% endif %}
+    {% if c.github and c.github != "" %}
+    <li>
+      <a class="elsewhere-link" rel="me" href="https://github.com/{{ c.github }}">
+        <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                stroke="currentColor" stroke-width="2.1" stroke-linecap="round"
+                stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span>GitHub</span>
+      </a>
+    </li>
+    {% endif %}
+    <li>
+      <a class="elsewhere-link" href="{{ '/feed.xml' | relative_url }}">
+        <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M3 8.4a4.6 4.6 0 0 1 4.6 4.6 M3 4.4a8.6 8.6 0 0 1 8.6 8.6"
+                stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+          <circle cx="3.9" cy="12.1" r="1.15" fill="currentColor"/>
+        </svg>
+        <span>RSS</span>
+      </a>
+    </li>
+  </ul>
+</section>

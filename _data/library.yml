@@ -1,0 +1,49 @@
+# Library entries, shown newest-first on /library/.
+#
+# Each entry:
+#   title: shown as the item's name
+#   file:  site-relative path to the document
+#   date:  used for ordering and the "Month Year" label
+#   note:  optional — when present, a small "a note" spool appears
+#          beneath the entry and the text unfolds inline. Markdown works.
+#          Delete the note line (or leave it empty) to hide the toggle.
+
+- title: The Virasoro Operators in String Theory
+  file: /projects/662661.pdf
+  date: 2016-03-29
+  note: >
+    A dissertation on the role of the Virasoro operators in bosonic string
+    theory — their origin in the classical theory, the full algebra via old
+    covariant quantisation, and the physical state conditions.
+
+- title: "SS12: Paramagnetic Resonance"
+  file: /projects/SS12-report-v2.pdf
+  date: 2015-03-21
+  note: >
+    Electron paramagnetic resonance in ruby: measuring the resonance field
+    across crystal orientations in an applied magnetic field.
+
+- title: "CO23: Solitons"
+  file: /projects/CO23univ3605.pdf
+  date: 2013-11-26
+  note: >
+    Numerically evolving the soliton solution of the Korteweg–de Vries
+    equation from its localised analytic wave-form.
+
+- title: "CO25: Laplace's Equation"
+  file: /projects/CO25univ3605.pdf
+  date: 2013-11-05
+  note: >
+    Solving Laplace's equation numerically.
+
+- title: "CO22: Solution of Schrödinger's Equation by Numerical Integration"
+  file: /projects/CO22univ3605.pdf
+  date: 2013-10-28
+  note: >
+    Numerical integration of Schrödinger's equation.
+
+- title: "CO51: Rocket Motion"
+  file: /projects/CO51univ3605.pdf
+  date: 2013-02-21
+  note: >
+    Simulating rocket motion numerically.

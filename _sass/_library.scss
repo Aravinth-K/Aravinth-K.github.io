@@ -1,55 +1,139 @@
-.library-grid {
+// ── Library ─────────────────────────────────────────────────
+// Entries hang off a single vertical thread tied to the group
+// spool with an overhand knot, one notch each — no boxes. The
+// whole list folds up onto its spool; each note folds out of
+// its entry's meta line.
+
+// The subtitle is a spool: the list winds up onto it.
+// Trigger styling comes from .spool-trigger in _spool.scss.
+.library-group-head {
+  margin: 2.6rem 0 0;
+  font-size: 1rem;
+}
+
+// Shared collapse shell — used by the group and by each note.
+.library-fold {
   display: grid;
-  gap: 1rem;
-  margin-top: 2rem;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  > .library-fold-clip {
+    overflow: hidden;
+    min-height: 0;
+    // room so the clip doesn't shave the knots and their glow
+    padding-left: 16px;
+    margin-left: -16px;
+  }
+
+  &.collapsed {
+    grid-template-rows: 0fr;
+  }
+}
+
+.library-list {
+  list-style: none;
+  position: relative;
+  margin: 1.5rem 0 0;
+  padding: 1.1rem 0 0.2rem 1.7rem;
+
+  // the one connecting thread…
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-left: 1.3px solid $thread;
+    opacity: 0.5;
+  }
+
+  // …tied off with an overhand knot where it meets the spool
+  // above, in the counterpoint colour like the note joints
+  &::after {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: -8px;
+    width: 15px;
+    height: 15px;
+    background: var(--counter);
+    -webkit-mask-image: $knot-mask;
+    mask-image: $knot-mask;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    filter: drop-shadow(0 0 5px color-mix(in srgb, var(--counter) 28%, transparent));
+  }
 
   .library-item {
-    display: flex;
-    align-items: center;
-    gap: 1.1rem;
-    padding: 1.1rem 1.3rem;
-    background: $paper-high;
-    border: 1px solid $line;
-    border-radius: 12px;
-    box-shadow: var(--shadow-soft);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease,
-                transform 0.3s ease;
+    position: relative;
+    margin: 0 0 1.9rem;
 
-    &:hover {
-      border-color: $thread;
-      box-shadow: var(--shadow-lift), 0 0 14px $glow;
-      transform: translateY(-2px);
+    &:last-child {
+      margin-bottom: 0.2rem;
     }
 
-    .library-icon {
-      flex-shrink: 0;
-      color: $thread;
-      filter: drop-shadow(0 0 4px $glow);
+    // notch against the thread
+    &::before {
+      content: "";
+      position: absolute;
+      left: -1.7rem;
+      top: 0.68em;
+      width: 0.8rem;
+      border-top: 1.3px solid $thread;
+      opacity: 0.6;
+      transition: opacity 0.3s ease, width 0.3s ease;
     }
 
-    .library-info {
-      flex: 1;
-      min-width: 0;
+    &:hover::before {
+      opacity: 1;
+      width: 1rem;
+    }
 
-      .library-title {
-        font-family: $font-display;
-        font-size: 1.08rem;
-        font-weight: 480;
-        margin: 0;
+    .library-title {
+      font-family: $font-display;
+      font-size: 0.98rem;
+      font-weight: 480;
+      margin: 0;
 
-        a {
-          color: $ink;
-          text-decoration: none;
+      a {
+        color: $ink;
+        text-decoration: none;
 
-          &:hover {
-            color: $accent;
-          }
+        &:hover {
+          color: $accent;
         }
       }
+    }
 
-      .library-meta {
-        @extend %smallcaps;
-        margin-top: 0.2rem;
+    .library-meta {
+      @extend %smallcaps;
+      margin-top: 0.15rem;
+    }
+
+    // Notes borrow the spool-inline thread but skip its knot —
+    // the group's knot at the top of the list is the only one.
+    .spool-inline-body::before {
+      content: none;
+    }
+
+    // "a note" sits in the meta line; the note itself unfolds
+    // beneath on a plain hanging thread (.spool-inline-body).
+    .library-note-toggle {
+      font: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      border-bottom: 1px dashed $line-strong;
+      transition: color 0.3s ease, border-color 0.3s ease;
+
+      &:hover,
+      &.active {
+        color: $accent;
+        border-color: $accent;
       }
     }
   }

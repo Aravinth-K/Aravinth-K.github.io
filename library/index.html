@@ -63,7 +63,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..640;1,9..144,340..640&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Archivo:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=1785413092">
+  <link rel="stylesheet" href="/assets/css/main.css?v=1785415929">
   <link rel="alternate" type="application/atom+xml" title="Aravinth Kulanthaivelu" href="/feed.xml">
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 8 h18 M7 24 h18 M11 8 v16 M21 8 v16 M11 11.5 h10 M11 16 h10 M11 20.5 h10' stroke='%23D4622B' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3Cpath d='M21 24 q6 3 9 1' stroke='%23D4622B' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
@@ -112,11 +112,121 @@
   <h1>Library</h1>
   <p>Collected papers, notes, and documents.</p>
 
-<div class="library-grid">
+<h2 class="library-group-head">
+  <button class="spool-trigger fold-toggle active" aria-expanded="true" aria-controls="old-projects">
+    <svg class="spool-glyph" width="15" height="15" viewBox="0 0 15 15" aria-hidden="true">
+      <path d="M2.5,4 h10 M2.5,11 h10 M4.5,4 v7 M10.5,4 v7 M4.5,5.8 h6 M4.5,7.5 h6 M4.5,9.2 h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+      <path d="M10.5,11 q2.5,1.5 4,0.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+    </svg>
+    <span>Old projects</span>
+  </button>
+</h2>
 
-  <p class="library-empty">Nothing here yet.</p>
-
+<div class="library-fold" id="old-projects">
+<div class="library-fold-clip">
+<ul class="library-list">
+  <li class="library-item">
+    <h3 class="library-title">
+      <a href="/projects/662661.pdf" target="_blank" rel="noopener">The Virasoro Operators in String Theory</a>
+    </h3>
+    <div class="library-meta">
+      PDF · March 2016 · <button class="library-note-toggle fold-toggle" aria-expanded="false" aria-controls="library-note-1">gist</button>
+    </div>
+    <div class="library-fold collapsed" id="library-note-1">
+      <div class="library-fold-clip">
+        <div class="spool-inline-body"><p>A dissertation on the role of the Virasoro operators in bosonic string theory — their origin in the classical theory, the full algebra via old covariant quantisation, and the physical state conditions.</p>
 </div>
+      </div>
+    </div>
+  </li>
+  <li class="library-item">
+    <h3 class="library-title">
+      <a href="/projects/SS12-report-v2.pdf" target="_blank" rel="noopener">SS12: Paramagnetic Resonance</a>
+    </h3>
+    <div class="library-meta">
+      PDF · March 2015 · <button class="library-note-toggle fold-toggle" aria-expanded="false" aria-controls="library-note-2">gist</button>
+    </div>
+    <div class="library-fold collapsed" id="library-note-2">
+      <div class="library-fold-clip">
+        <div class="spool-inline-body"><p>Electron paramagnetic resonance in ruby: measuring the resonance field across crystal orientations in an applied magnetic field.</p>
+</div>
+      </div>
+    </div>
+  </li>
+  <li class="library-item">
+    <h3 class="library-title">
+      <a href="/projects/CO23univ3605.pdf" target="_blank" rel="noopener">CO23: Solitons</a>
+    </h3>
+    <div class="library-meta">
+      PDF · November 2013 · <button class="library-note-toggle fold-toggle" aria-expanded="false" aria-controls="library-note-3">gist</button>
+    </div>
+    <div class="library-fold collapsed" id="library-note-3">
+      <div class="library-fold-clip">
+        <div class="spool-inline-body"><p>Numerically evolving the soliton solution of the Korteweg–de Vries equation from its localised analytic wave-form.</p>
+</div>
+      </div>
+    </div>
+  </li>
+  <li class="library-item">
+    <h3 class="library-title">
+      <a href="/projects/CO25univ3605.pdf" target="_blank" rel="noopener">CO25: Laplace's Equation</a>
+    </h3>
+    <div class="library-meta">
+      PDF · November 2013 · <button class="library-note-toggle fold-toggle" aria-expanded="false" aria-controls="library-note-4">gist</button>
+    </div>
+    <div class="library-fold collapsed" id="library-note-4">
+      <div class="library-fold-clip">
+        <div class="spool-inline-body"><p>Solving Laplace’s equation numerically.</p>
+</div>
+      </div>
+    </div>
+  </li>
+  <li class="library-item">
+    <h3 class="library-title">
+      <a href="/projects/CO22univ3605.pdf" target="_blank" rel="noopener">CO22: Solution of Schrödinger's Equation by Numerical Integration</a>
+    </h3>
+    <div class="library-meta">
+      PDF · October 2013 · <button class="library-note-toggle fold-toggle" aria-expanded="false" aria-controls="library-note-5">gist</button>
+    </div>
+    <div class="library-fold collapsed" id="library-note-5">
+      <div class="library-fold-clip">
+        <div class="spool-inline-body"><p>Numerical integration of Schrödinger’s equation.</p>
+</div>
+      </div>
+    </div>
+  </li>
+  <li class="library-item">
+    <h3 class="library-title">
+      <a href="/projects/CO51univ3605.pdf" target="_blank" rel="noopener">CO51: Rocket Motion</a>
+    </h3>
+    <div class="library-meta">
+      PDF · February 2013 · <button class="library-note-toggle fold-toggle" aria-expanded="false" aria-controls="library-note-6">gist</button>
+    </div>
+    <div class="library-fold collapsed" id="library-note-6">
+      <div class="library-fold-clip">
+        <div class="spool-inline-body"><p>Simulating rocket motion numerically.</p>
+</div>
+      </div>
+    </div>
+  </li>
+</ul>
+</div>
+</div>
+
+<script>
+(function () {
+  document.querySelectorAll('.fold-toggle').forEach(function (toggle) {
+    var body = document.getElementById(toggle.getAttribute('aria-controls'));
+    if (!body) return;
+    toggle.addEventListener('click', function () {
+      var open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      toggle.classList.toggle('active', !open);
+      body.classList.toggle('collapsed', open);
+    });
+  });
+})();
+</script>
 
 </article>
 
@@ -128,8 +238,8 @@
 </footer>
 
 
-  <script src="/assets/js/site.js?v=1785413092"></script>
-  <script src="/assets/js/spool.js?v=1785413092"></script>
+  <script src="/assets/js/site.js?v=1785415929"></script>
+  <script src="/assets/js/spool.js?v=1785415929"></script>
   
   
   

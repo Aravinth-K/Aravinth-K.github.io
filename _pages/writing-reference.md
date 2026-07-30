@@ -63,3 +63,7 @@ You can nest another spool inside for deeper detail.
 ```
 
 Each spool unfolds in place beneath its trigger, hanging from a knotted thread, and reading continues undisturbed around it. Press Escape to fold the most recent spool back up.
+
+## Maths gotchas
+
+Display maths between `$$` fences is protected from the markdown processor, but inline `$...$` is ordinary text to kramdown, which strips backslash-escapes *before* MathJax runs. In particular `\{` and `\}` come out as bare braces and vanish from the rendered maths. In inline maths write `\lbrace` and `\rbrace` instead: $G\in\lbrace B,C\rbrace$. (Inside `$$` blocks, `\{` and `\}` are fine.)

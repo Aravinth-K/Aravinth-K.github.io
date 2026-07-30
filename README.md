@@ -47,7 +47,8 @@ $$\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}$$
 | Field         | Required? | What it does                              |
 |---------------|-----------|-------------------------------------------|
 | `layout`      | yes       | Always `post`                             |
-| `title`       | yes       | Post title                                |
+| `title`       | yes       | Post title (may contain `$...$` maths)    |
+| `short_title` | no        | Plain-text title for the browser tab and og tags, when `title` has maths |
 | `date`        | yes       | Publication date (YYYY-MM-DD)             |
 | `description` | no        | Short summary for listings                |
 | `tags`        | no        | List of tags, e.g. `[maths, geometry]`    |

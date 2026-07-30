@@ -51,6 +51,30 @@
   }
 }
 
+// ── About ───────────────────────────────────────────────────
+
+.about-portrait {
+  float: right;
+  width: min(11rem, 40%);
+  height: auto;
+  margin: 0.3rem 0 1.2rem 1.8rem;
+  padding: 0.35rem;
+  background: $paper-high;
+  border: 1px solid $line-strong;
+  border-radius: 3px;
+  box-shadow: var(--shadow-lift);
+  transform: rotate(1.5deg);
+}
+
+@media (max-width: 40rem) {
+  .about-portrait {
+    float: none;
+    display: block;
+    width: min(11rem, 70%);
+    margin: 0 auto 1.5rem;
+  }
+}
+
 // ── Pagination ──────────────────────────────────────────────
 
 .pagination {

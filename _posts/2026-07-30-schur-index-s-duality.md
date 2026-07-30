@@ -3,8 +3,8 @@ layout: post
 title: '$S$-duality of the Unflavoured Schur Index of $\mathcal N=4$ SYM'
 short_title: S-duality of the Unflavoured Schur Index of N=4 SYM
 date: 2026-07-30
-description: A one-particle proof of an open S-duality identity — and the LLM that found it.
-tags: [physics, maths, llms]
+description: Showing two integrals are the same.
+tags: [physics, maths, sym, indices, integrals, lie-algebras, duality]
 ---
 
 
